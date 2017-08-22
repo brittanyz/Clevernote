@@ -30,7 +30,6 @@ class Greeting extends React.Component {
   }
 
   render() {
-    // debugger
     let greeting1 = "Meet Clevernote, your second brain";
     let greeting2 = "Capture, organize, and share notes from anywhere. " +
                     "Your bext ideas are always with you and in sync.";

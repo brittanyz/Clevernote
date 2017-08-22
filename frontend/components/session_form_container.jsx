@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch, {location}) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SessionForm));
+export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);
