@@ -8,8 +8,8 @@ import HeaderContainer from './header_container';
 const App = () => {
   return (
     <div>
-      <Route path="/login" component={SessionFormContainer} />
       <Route path="/signup" component={SessionFormContainer} />
+      <Route path="/login" component={SessionFormContainer} />
     </div>
   );
 };
