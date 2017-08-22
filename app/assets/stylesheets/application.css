@@ -1,0 +1,61 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+#root {
+  /*display: flex;
+  flex-direction: row;*/
+  background-color: Azure;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.greeting {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 510px;
+  min-height: 600px;
+  float: left;
+  padding-left: 55px;
+  padding-right: 55px;
+  border-right-style: inset;
+}
+
+.login-signup {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 510px;
+  min-height: 600px;
+  float: left;
+  padding-left: 55px;
+  padding-right: 55px;
+}
+
+.greeting1 {
+  font-family: Helvetica, Arial, sans-serif;
+  /*font-family: 'Heebo', sans-serif;*/
+  font-stretch: extra-expanded;
+  font-size: 60px;
+  line-height: 70px;
+  font-weight: bold;
+}
+
+.greeting2 {
+  /*font-family: 'Playfair Display Extra-Light', serif;*/
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 100;
+  font-size: 28px;
+}
