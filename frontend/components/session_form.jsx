@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { login, signup } from '../actions/sessions_actions';
 import { Link } from 'react-router-dom';
 import GreetingContainer from './greeting_container';
