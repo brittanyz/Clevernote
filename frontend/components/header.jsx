@@ -8,8 +8,8 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header>
-        <h1>Clevernote</h1>
+      <header className="signup-navbar">
+        <h1 className="Clevernote">CLEVERNOTE</h1>
         <Link to={"/login"}>Log in</Link>
         <Link to={"/signup"}>Log out</Link>
       </header>

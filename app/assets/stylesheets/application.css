@@ -13,40 +13,57 @@
  *= require_tree .
  *= require_self
  */
+@import 'reset.scss';
+@import 'signup_navbar.scss';
+
 
 #root {
-  /*display: flex;
-  flex-direction: row;*/
+  /*display: inline-flex;*/
   background-color: Azure;
-  font-family: Helvetica, Arial, sans-serif;
+  /*font-family: Helvetica, Arial, sans-serif;*/
 }
 
 .greeting {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 510px;
+  width: 525px;
   min-height: 600px;
   float: left;
   padding-left: 55px;
-  padding-right: 55px;
-  border-right-style: inset;
+  padding-right: 25px;
 }
 
-.login-signup {
+.input, .login-button {
+  padding-left: 15px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  width: 360px;
+  height: 48px;
+  margin-top: 15px;
+}
+
+.login-button{
+  background-color: #00cc03;
+}
+
+.signup-form {
+  font-weight: bold;
+  font-family: 'Muli', sans-serif;
   display: flex;
-  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  min-width: 510px;
+  width: 525px;
   min-height: 600px;
   float: left;
-  padding-left: 55px;
-  padding-right: 55px;
+  margin-left: 55px;
+  padding-right: 15px;
+  border-left-style: inset;
 }
 
 .greeting1 {
-  font-family: Helvetica, Arial, sans-serif;
-  /*font-family: 'Heebo', sans-serif;*/
+  font-family: 'Open Sans', sans-serif;
   font-stretch: extra-expanded;
   font-size: 60px;
   line-height: 70px;
@@ -54,8 +71,8 @@
 }
 
 .greeting2 {
-  /*font-family: 'Playfair Display Extra-Light', serif;*/
-  font-family: 'Exo 2', sans-serif;
+  font-weight: bold;
+  font-family: 'Muli', sans-serif;
   font-weight: 100;
-  font-size: 28px;
+  font-size: 18px;
 }
