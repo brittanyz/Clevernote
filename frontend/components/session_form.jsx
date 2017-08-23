@@ -1,7 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { login, signup } from '../actions/sessions_actions';
-import { Link } from 'react-router-dom';
 import GreetingContainer from './greeting_container';
 import HeaderContainer from './header_container';
 
@@ -39,28 +38,6 @@ class SessionForm extends React.Component {
     };
   }
 
-//
-//   render () {
-//     return (
-//       <div>
-//         <form onSubmit={this.handleSubmit}>
-//           <h2>Sign up</h2>
-//           <label> Username
-//             <input type="text" onChange={this.handleChange('username')}/>
-//           </label>
-//           <label> Password
-//             <input type="password" onChange={this.handleChange('password')}/>
-//           </label>
-//             <input type="submit" />
-//         </form>
-//       </div>
-//     );
-//   }
-// }
-//
-// export default withRouter(SessionForm);
-
-
   render () {
     let prompt, link, home, header;
     if (this.props.formType === "login") {
@@ -76,8 +53,8 @@ class SessionForm extends React.Component {
     }
     return (
       <div>
-        <p>{home}</p>
-        <p>{header}</p>
+        {home}
+        {header}
         <form onSubmit={this.handleSubmit}>
           <h2>{prompt}</h2>
           <label> Username

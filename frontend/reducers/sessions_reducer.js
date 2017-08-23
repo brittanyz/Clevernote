@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
       return merge ({}, state, { currentUser }, { errors });
     case RECEIVE_ERRORS:
       currentUser = action.currentUser;
-      errors = action.errors;
+      errors = action.errors.responseJSON;
       return merge({}, state, { currentUser }, { errors });
     default:
       return state;

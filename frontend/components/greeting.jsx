@@ -13,7 +13,6 @@ class Greeting extends React.Component {
   }
 
   handleChange(inputType) {
-    // debugger
     return (e) => {
       e.preventDefault();
       this.setState({
@@ -24,7 +23,6 @@ class Greeting extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // debugger
     const user = Object.assign({}, this.state);
     this.props.signup(user);
   }
