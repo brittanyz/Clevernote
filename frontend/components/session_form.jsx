@@ -1,3 +1,7 @@
+// refactored into actual form. DO NOT NEED ??
+
+
+
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { login, signup } from '../actions/sessions_actions';
@@ -56,8 +60,8 @@ class SessionForm extends React.Component {
       prompt = "Log In";
       link = <Link to="/login">{prompt}</Link>;
     } else {
-      header = <HeaderContainer />
-      greet = <GreetingContainer />
+      header = <HeaderContainer />;
+      greet = <GreetingContainer />;
       prompt = "Sign Up";
       link = <Link to="/signup">{prompt}</Link>;
     }
@@ -75,11 +79,9 @@ class SessionForm extends React.Component {
           <div className={this.props.formType}>
             <form onSubmit={this.handleSubmit}>
               <input className="input" type="text"
-                onMouseDown={this.mouseClick}
                 value={this.state.username}
                 onChange={this.handleChange('username')}/>
               <input className="input" type="password"
-                onMouseDown={this.mouseClick}
                 value={this.state.password}
                 onChange={this.handleChange('password')}/>
               <input className="login-button" type="submit" value={prompt}/>
@@ -94,3 +96,6 @@ class SessionForm extends React.Component {
 }
 
 export default withRouter(SessionForm);
+
+// onMouseDown={this.mouseClick}
+// onMouseDown={this.mouseClick}

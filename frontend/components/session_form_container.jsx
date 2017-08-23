@@ -1,3 +1,5 @@
+// refactored... DO NOT NEED???
+
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
 import { login, signup } from '../actions/sessions_actions';

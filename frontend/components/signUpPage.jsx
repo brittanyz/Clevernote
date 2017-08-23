@@ -15,16 +15,6 @@ class SignUpPage extends React.Component {
       this.props.history.push('/');
     }
   }
-  // 
-  // mouseClick() {
-  //   if (this.state.username === 'Username') {
-  //     this.setState({
-  //       username: '',
-  //       password: ''
-  //     });
-  //   }
-  // }
-
 
   render () {
 
