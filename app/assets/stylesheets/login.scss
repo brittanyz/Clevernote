@@ -1,0 +1,19 @@
+body {
+  background-color: light gray;
+}
+
+.login {
+
+  font-weight: bold;
+  font-family: 'Muli', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 500px;
+  min-height: 450px;
+  // float: left;
+  padding-left: 388px;
+  padding-right: 388px;
+
+}

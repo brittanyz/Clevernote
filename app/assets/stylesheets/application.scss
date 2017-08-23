@@ -14,13 +14,14 @@
  *= require_self
  */
 @import 'reset.scss';
-@import 'signup_navbar.scss';
-
-
+@import 'login.scss';
 #root {
-  /*display: inline-flex;*/
-  background-color: Azure;
   /*font-family: Helvetica, Arial, sans-serif;*/
+}
+
+.body-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .greeting {
@@ -32,8 +33,14 @@
   width: 500px;
   min-height: 450px;
   float: left;
-  padding-left: 55px;
-  padding-right: 25px;
+  padding: 70px;
+  // border-right: 2px black;
+}
+
+.divider{
+  border-left: 1px solid #f2f2f2;
+  max-width: 3px;
+  min-height: 400px;
 }
 
 .input, .login-button {
@@ -50,7 +57,7 @@
   text-align: center;
 }
 
-.signup-form {
+.signup {
   font-weight: bold;
   font-family: 'Muli', sans-serif;
   display: flex;
@@ -61,7 +68,7 @@
   float: left;
   margin-left: 55px;
   padding: 25px;
-  border-left-style: inset;
+  border-left: 2px black;
 }
 
 .greeting1 {
