@@ -5,6 +5,12 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  after_create do
+    notebook = Notebook.create!(title: "Default Notebook", author_id: self.id)
+    self.default_notebook_id = notebook.id
+    self.save!
+  end
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)
@@ -31,4 +37,6 @@ class User < ApplicationRecord
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
   end
+
+
 end
