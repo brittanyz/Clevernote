@@ -6,7 +6,7 @@ const Errors = ({ errors }) => {
 
   return (
     <ul className="errors">
-      { errors.map( (error, idx) => <li key="idx">{ error }</li> ) }
+      { errors.map( (error, idx) => <li className="error" key="idx">{ error }</li> ) }
     </ul>
   );
 };
