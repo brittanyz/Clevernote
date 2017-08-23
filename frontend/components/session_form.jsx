@@ -49,15 +49,15 @@ class SessionForm extends React.Component {
 
 
   render () {
-    let prompt, link, home, header;
+    let prompt, link, header, greet;
     if (this.props.formType === "login") {
-      home = '';
       header = '';
+      greet = '';
       prompt = "Log In";
       link = <Link to="/login">{prompt}</Link>;
     } else {
-      home = <HeaderContainer />
-      header = <GreetingContainer />
+      header = <HeaderContainer />
+      greet = <GreetingContainer />
       prompt = "Sign Up";
       link = <Link to="/signup">{prompt}</Link>;
     }
@@ -65,22 +65,29 @@ class SessionForm extends React.Component {
     return (
       <div>
         <div className="signup-header">
-        {home}
         {header}
         </div>
-        <div className="signup-form">
-          <form onSubmit={this.handleSubmit}>
-            <input className="input" type="text"
-              onMouseDown={this.mouseClick}
-              value={this.state.username}
-              onChange={this.handleChange('username')}/>
-            <input className="input" type="password"
-              onMouseDown={this.mouseClick}
-              value={this.state.password}
-              onChange={this.handleChange('password')}/>
-            <input className="login-button" type="submit" value={prompt}/>
-          </form>
+
+        <div className="body-wrapper">
+          {greet}
+          <div className="divider"></div>
+          <span className={this.props.formType}>
+          <div className={this.props.formType}>
+            <form onSubmit={this.handleSubmit}>
+              <input className="input" type="text"
+                onMouseDown={this.mouseClick}
+                value={this.state.username}
+                onChange={this.handleChange('username')}/>
+              <input className="input" type="password"
+                onMouseDown={this.mouseClick}
+                value={this.state.password}
+                onChange={this.handleChange('password')}/>
+              <input className="login-button" type="submit" value={prompt}/>
+            </form>
+          </div>
+        </span>
         </div>
+
       </div>
     );
   }

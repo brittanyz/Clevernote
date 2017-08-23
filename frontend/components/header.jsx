@@ -9,9 +9,12 @@ class Header extends React.Component {
   render() {
     return (
       <header className="signup-navbar">
-        <h1 className="Clevernote">CLEVERNOTE</h1>
-        <Link to={"/login"}>Log in</Link>
+        <div className="logo">
+          <img className="elephant" src={window.images.logo} />
+          <h1 className="Clevernote">CLEVERNOTE</h1>
+        </div>
         <Link to={"/signup"}>Log out</Link>
+        <Link to={"/login"}>Log in</Link>
       </header>
     )
   }
