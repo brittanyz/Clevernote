@@ -53,21 +53,26 @@ class SessionForm extends React.Component {
     }
     return (
       <div>
+        <div className="signup-header">
         {home}
         {header}
-        <form onSubmit={this.handleSubmit}>
-          <h2>{prompt}</h2>
-          <label> Username
-            <input type="text" onChange={this.handleChange('username')}/>
-          </label>
-          <label> Password
-            <input type="password" onChange={this.handleChange('password')}/>
-          </label>
-            <input type="submit" />
-        </form>
+        </div>
+        <div className="signup-form">
+          <form onSubmit={this.handleSubmit}>
+            <label> Username
+              <input className="input" type="text" onChange={this.handleChange('username')}/>
+            </label>
+            <label> Password
+              <input className="input" type="password" onChange={this.handleChange('password')}/>
+            </label>
+              <input className="login-button" type="submit" value="Sign Up"/>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
 export default withRouter(SessionForm);
+
+// <h2>{prompt}</h2>
