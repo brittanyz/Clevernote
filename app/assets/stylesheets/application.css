@@ -28,8 +28,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 525px;
-  min-height: 600px;
+  padding-top: 30px;
+  width: 500px;
+  min-height: 450px;
   float: left;
   padding-left: 55px;
   padding-right: 25px;
@@ -46,6 +47,7 @@
 
 .login-button{
   background-color: #00cc03;
+  text-align: center;
 }
 
 .signup-form {
@@ -54,18 +56,18 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 525px;
-  min-height: 600px;
+  width: 500px;
+  min-height: 450px;
   float: left;
   margin-left: 55px;
-  padding-right: 15px;
+  padding: 25px;
   border-left-style: inset;
 }
 
 .greeting1 {
   font-family: 'Open Sans', sans-serif;
   font-stretch: extra-expanded;
-  font-size: 60px;
+  font-size: 58px;
   line-height: 70px;
   font-weight: bold;
 }

@@ -10,10 +10,11 @@ class SessionForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.mouseClick = this.mouseClick.bind(this);
 
     this.state = {
-      username: "",
-      password: "",
+      username: "Username",
+      password: "Password",
     };
   }
   //
@@ -24,7 +25,6 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit (e) {
-    // debugger;
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
@@ -37,6 +37,16 @@ class SessionForm extends React.Component {
       });
     };
   }
+
+  mouseClick() {
+    if (this.state.username === 'Username') {
+      this.setState({
+        username: '',
+        password: ''
+      });
+    }
+  }
+
 
   render () {
     let prompt, link, home, header;
@@ -51,6 +61,7 @@ class SessionForm extends React.Component {
       prompt = "Sign Up";
       link = <Link to="/signup">{prompt}</Link>;
     }
+
     return (
       <div>
         <div className="signup-header">
@@ -59,13 +70,15 @@ class SessionForm extends React.Component {
         </div>
         <div className="signup-form">
           <form onSubmit={this.handleSubmit}>
-            <label> Username
-              <input className="input" type="text" onChange={this.handleChange('username')}/>
-            </label>
-            <label> Password
-              <input className="input" type="password" onChange={this.handleChange('password')}/>
-            </label>
-              <input className="login-button" type="submit" value="Sign Up"/>
+            <input className="input" type="text"
+              onMouseDown={this.mouseClick}
+              value={this.state.username}
+              onChange={this.handleChange('username')}/>
+            <input className="input" type="password"
+              onMouseDown={this.mouseClick}
+              value={this.state.password}
+              onChange={this.handleChange('password')}/>
+            <input className="login-button" type="submit" value={prompt}/>
           </form>
         </div>
       </div>
@@ -74,5 +87,3 @@ class SessionForm extends React.Component {
 }
 
 export default withRouter(SessionForm);
-
-// <h2>{prompt}</h2>

@@ -1,8 +1,11 @@
 .signup-navbar {
-  position: fixed;
-  width: 100%;
-  min-height: 100px;
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 30px;
+  width: 1200px;
+  height: 30px;
   font-family: 'Muli', sans-serif;
+  border-bottom: 1px solid black;
 }
 
 .Clevernote {
