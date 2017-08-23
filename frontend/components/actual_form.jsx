@@ -1,6 +1,7 @@
 import React from 'react';
-import { login, signup } from '../actions/sessions_actions';
+import { login, signup, clearErrors } from '../actions/sessions_actions';
 import { connect } from 'react-redux';
+import Errors from './errors';
 
 class ActualForm extends React.Component {
 
@@ -27,22 +28,26 @@ class ActualForm extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.clearErrors();
+  }
+
   render() {
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className ="form" onSubmit={this.handleSubmit}>
         <input className="input" type="text"
-          onMouseDown={this.mouseClick}
           value={this.state.username}
           placeholder="Username"
           onChange={this.handleChange('username')}/>
         <input className="input" type="password"
-          onMouseDown={this.mouseClick}
           value={this.state.password}
           placeholder="Password"
           onChange={this.handleChange('password')}/>
         <input className="login-button" type="submit" value={this.props.formType}/>
+        <Errors />
       </form>
+
     );
   }
 }
@@ -58,7 +63,8 @@ const mapDispatchToProps = (dispatch, {formType}) => {
   const processForm = (formType === 'login') ? login : signup;
   return {
     processForm: user => dispatch(processForm(user)),
-    formType
+    clearErrors: () => dispatch(clearErrors()),
+    formType,
   };
 };
 
