@@ -6,6 +6,7 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+    @note.user.id = current_user.id
     if @note.save
       render :show
     else
@@ -19,16 +20,25 @@ class NotesController < ApplicationController
   end
 
   def update
+    @note = Note.find(params[:id])
+    if @note.user.id == current_user.id && @note.update
+      render :show
+    else @errors = @note.errors.full_messages
+      render json: @errors, status: 422
+    end
   end
 
   def index
-    @notes = Notes.all
+    @notes = Note.all
   end
 
   def show
+    @note = Note.find(params[:id])
   end
 
   def destroy
+    @note = Note.find(params[:id])
+    @note.destroy
   end
 
   private
