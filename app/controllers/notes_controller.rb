@@ -21,11 +21,9 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    @note.update(note_params)
-    if @note.user.id == current_user.id && @note.save
-      rneder :show
-    else
-      @errors = @note.errors.full_messages
+    if @note.user.id == current_user.id && @note.update
+      render :show
+    else @errors = @note.errors.full_messages
       render json: @errors, status: 422
     end
   end
