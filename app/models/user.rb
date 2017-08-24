@@ -11,6 +11,13 @@ class User < ApplicationRecord
     self.save!
   end
 
+  has_many :notebooks,
+    foreign_key: :author_id
+
+  has_many :notes,
+    through: :notebooks,
+    source: :notes
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)

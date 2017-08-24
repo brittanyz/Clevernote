@@ -2,19 +2,18 @@ import React from 'react';
 import SignUpPage from './signUpPage';
 import LogInPage from './logInPage';
 import { AuthRoute, ProtectedRoute } from '../util/route_util.jsx';
-// import UserFormContainer from './user_form_container';
-// import GreetingContainer from './greeting_container';
+import NotesIndexContainer from './notes_index_container';
 import { Route } from 'react-router-dom';
 import HeaderContainer from './header_container';
 
-const Dummy = () => {
-    return ( <div>words</div>);
-};
+// const Dummy = () => {
+//     return ( <div>words</div>);
+// };
 
 const App = () => {
   return (
     <div>
-      <ProtectedRoute path='/' component={Dummy}/>
+      <ProtectedRoute path='/' component={NotesIndexContainer}/>
       <AuthRoute path="/signup" component={SignUpPage} />
       <AuthRoute path="/login" component={LogInPage} />
     </div>
@@ -22,7 +21,3 @@ const App = () => {
 };
 
 export default App;
-
-
-// <HeaderContainer />
-// <GreetingContainer />

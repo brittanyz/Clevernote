@@ -1,10 +1,11 @@
 class Note < ApplicationRecord
   validates :title, :notebook_id, :body, presence: true
-  validates :title, uniqueness: true
+  # validates :title, uniqueness: true
 
-  belongs_to :notebook
+  belongs_to :notebook,
+    foreign_key: :notebook_id
 
-  has_one :user,
+  has_one :author,
     through: :notebook,
-    source: :user
+    source: :author
 end

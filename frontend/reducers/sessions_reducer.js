@@ -10,12 +10,10 @@ export default (state = initialState, action) => {
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       let currentUser = action.currentUser;
-      let errors = action.errors;
-      return merge ({}, state, { currentUser }, { errors });
+      return merge ({}, state, { currentUser });
     case RECEIVE_ERRORS:
-      currentUser = action.currentUser;
-      errors = action.errors.responseJSON;
-      return merge({}, state, { currentUser }, { errors });
+      const errors = action.errors.responseJSON;
+      return merge({}, state, { errors });
     case CLEAR_ERRORS:
       return initialState;
     default:
