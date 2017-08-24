@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class Api::NotesController < ApplicationController
 
   def new
     @note = Note.new
@@ -6,10 +6,10 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
-    @note.user.id = current_user.id
-    if @note.save
+    if current_user.notebooks.exists?(id: @note.notebook_id) && @note.save
       render :show
     else
+
       @errors = @note.errors.full_messages
       render json: @errors, status: 422
     end
@@ -21,7 +21,8 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    if @note.user.id == current_user.id && @note.update
+    # debugger
+    if current_user.notebooks.exists?(id: @note.notebook_id) && @note.save
       render :show
     else @errors = @note.errors.full_messages
       render json: @errors, status: 422
@@ -29,7 +30,7 @@ class NotesController < ApplicationController
   end
 
   def index
-    @notes = Note.all
+    @notes = current_user.notes
   end
 
   def show

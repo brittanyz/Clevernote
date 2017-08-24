@@ -31,6 +31,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 
 gem 'rails_12factor'
+gem 'faker'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
