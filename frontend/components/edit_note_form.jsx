@@ -12,6 +12,7 @@ class EditNoteForm extends React.Component {
       notebook_id: null,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(inputType){
@@ -25,15 +26,21 @@ class EditNoteForm extends React.Component {
   }
 
   componentWillMount () {
-    debugger;
     let me = this.props.notes;
     console.log(me);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    // will break... need to worry about mounting the default note first
+    // so I can grab the id (thats what my edit action needs)
+    this.props.editNote(this.state);
+  }
+
   render() {
     return (
-      <div className='new-note-container'>
-        <form className='new-note-form'>
+      <div className='edit-note-container'>
+        <form className='edit-note-form' onSubmit={this.handleSubmit}>
           <input
             className='title'
             type='text'
@@ -44,6 +51,10 @@ class EditNoteForm extends React.Component {
             className='body'
             type='textarea'
             onChange={this.handleChange('body')} />
+          <input
+            className='edit-submit'
+            type='submit'
+            value='temporary submit' />
         </form>
       </div>
     );
