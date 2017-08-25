@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // window.signup = signup;
   // window.login = login;
   window.logout = logout;
-  window.fetchNote = fetchNote;
-  window.fetchNotes = fetchNotes;
-  window.createNote = createNote;
-  window.deleteNote = deleteNote;
+  // window.fetchNote = fetchNote;
+  // window.fetchNotes = fetchNotes;
+  // window.createNote = createNote;
+  // window.deleteNote = deleteNote;
   window.dispatch = store.dispatch;
 });

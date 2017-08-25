@@ -1,0 +1,28 @@
+.new-note-container {
+  display: flex;
+}
+
+.new-note-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: 40px;
+  padding-top: 8px;
+  padding-left: 15px;
+}
+
+.title::placeholder{
+  color: #00cc00;
+}
+.body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  color: darkgray;
+  padding-top: 8px;
+  padding-left: 15px;
+}
