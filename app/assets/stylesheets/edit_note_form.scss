@@ -1,10 +1,11 @@
-.new-note-container {
+.edit-note-container {
   display: flex;
 }
 
-.new-note-form {
+.edit-note-form {
   display: flex;
   flex-direction: column;
+  padding-left: 15px;
 }
 
 .title {
@@ -25,4 +26,14 @@
   color: darkgray;
   padding-top: 8px;
   padding-left: 15px;
+}
+
+.edit-submit {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  border: 1px solid lightgray;
+  padding-left: 8px;
+  max-width: 160px;
+
 }
