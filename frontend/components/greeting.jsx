@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Greeting extends React.Component {
   constructor(props) {
@@ -31,15 +32,31 @@ class Greeting extends React.Component {
     let greeting1 = "Meet Clevernote, your second brain.";
     let greeting2 = "Capture, organize, and share notes from anywhere. " +
                     "Your best ideas are always with you and in sync.";
+    let items = [<div key={1} className='greeting1'>{greeting1}</div>,
+                  <div key={2} className='greeting2'>{greeting2}</div>,
+                  <div key='three'>another div </div>];
+
     return(
-        <div className='greeting'>
-          <h1 className='greeting1'>{greeting1}</h1>
-          <h3 className='greeting2'>{greeting2}</h3>
-        </div>
-
-
+      <div>
+        <ReactCSSTransitionGroup className='greeting'
+          transitionName='example'
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {items}
+        </ReactCSSTransitionGroup>
+      </div>
     );
   }
 }
 
 export default Greeting;
+
+// <div className='greeting'>
+// </div>
+//
+//
+//
+// -        <div className='greeting'>
+// -          <h1 className='greeting1'>{greeting1}</h1>
+// -          <h3 className='greeting2'>{greeting2}</h3>
+// -        </div>

@@ -1,0 +1,62 @@
+.notes-wrapper {
+  display: flex;
+}
+
+.user-notes {
+  min-height: 700px;
+  width: 350px;
+  border: 1px solid #e6e6e6;
+  overflow: scroll;
+  list-style: none;
+}
+
+.note-list-item:hover {
+  background-color: #00cc00;
+}
+
+.note-body:hover{
+  color: white;
+}
+
+.note-title:hover {
+  color: white;
+}
+
+.note-list-item {
+  border-bottom: 1px solid #e6e6e6;
+  height: 100px;
+  width: 350px;
+}
+
+.note-body{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: 13px;
+  color: darkgray;
+  padding-top: 8px;
+  padding-left: 15px;
+}
+
+.note-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  color: #606060;
+  font-size: 16px;
+  padding-top: 6px;
+  padding-left: 15px
+}
+
+.texthover:hover {
+  color: white;
+}
+
+.fixed-first-note {
+  border-bottom: 1px solid #e6e6e6;
+  height: 120px;
+  width: 350px;
+  padding: 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  color: #606060;
+  font-size: 24px;
+}

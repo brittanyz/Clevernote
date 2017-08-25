@@ -6,9 +6,6 @@ import NotesIndexContainer from './notes_index_container';
 import { Route } from 'react-router-dom';
 import HeaderContainer from './header_container';
 
-// const Dummy = () => {
-//     return ( <div>words</div>);
-// };
 
 const App = () => {
   return (

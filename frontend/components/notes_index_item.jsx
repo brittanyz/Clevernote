@@ -1,9 +1,9 @@
 import React from 'react';
 
 const NotesIndexItem = ({note}) => (
-  <li>
-    <h3>{note.title}</h3>
-    <p>{note.body}</p>
+  <li className='note-list-item'>
+      <p className='note-title'>{note.title}</p>
+      <p className='note-body'>{note.body}</p>
   </li>
 );
 
