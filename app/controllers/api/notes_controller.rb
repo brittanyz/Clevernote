@@ -21,7 +21,6 @@ class Api::NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    # debugger
     if current_user.notebooks.exists?(id: @note.notebook_id) && @note.save
       render :show
     else @errors = @note.errors.full_messages

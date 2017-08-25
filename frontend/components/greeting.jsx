@@ -33,8 +33,7 @@ class Greeting extends React.Component {
     let greeting2 = "Capture, organize, and share notes from anywhere. " +
                     "Your best ideas are always with you and in sync.";
     let items = [<div key={1} className='greeting1'>{greeting1}</div>,
-                  <div key={2} className='greeting2'>{greeting2}</div>,
-                  <div key='three'>another div </div>];
+                 <div key={2} className='greeting2'>{greeting2}</div>];
 
     return(
       <div>
@@ -51,11 +50,7 @@ class Greeting extends React.Component {
 
 export default Greeting;
 
-// <div className='greeting'>
-// </div>
-//
-//
-//
+
 // -        <div className='greeting'>
 // -          <h1 className='greeting1'>{greeting1}</h1>
 // -          <h3 className='greeting2'>{greeting2}</h3>
