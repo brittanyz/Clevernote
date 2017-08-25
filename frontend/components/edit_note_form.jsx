@@ -5,52 +5,69 @@ import { fetchNotes, editNote } from '../actions/notes_actions';
 class EditNoteForm extends React.Component {
   constructor(props) {
     super(props);
-
+    let defaultNote = this.props.note || {title: '', body:'', notebook_id: null};
     this.state = {
-      title: '',
-      body:'',
-      notebook_id: null,
+      title: defaultNote.title,
+      body: defaultNote.body,
+      notebook_id: defaultNote.note_id,
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleTitle = this.handleTitle.bind(this);
+    this.handleBody = this.handleBody.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(inputType){
-    return (e) => {
-      e.preventDefault();
-      this.setState({
-        // why is this in brackets???
-        [inputType]: e.currentTarget.value,
-      });
-    };
+  handleTitle(e){
+    e.preventDefault();
+    this.setState({
+      title: e.currentTarget.value,
+    });
+    console.log('handling title');
   }
 
-  componentWillMount () {
-    let me = this.props.notes;
-    console.log(me);
+  handleBody(e){
+    e.preventDefault();
+    this.setState({
+      body: e.currentTarget.value,
+    });
+    console.log('handling body');
+    this.props.editNote(this.state);
   }
+
+  // componentWillReceiveProps() {
+  //   console.log('receive props');
+  //   // if (this.props.allNotes.length > 0) {this.props.editNote(this.state);}
+  // }
+  // componentDidMount () {
+  //   console.log('didMount');
+  //   // this.props.fetchNote()
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
-    // will break... need to worry about mounting the default note first
-    // so I can grab the id (thats what my edit action needs)
     this.props.editNote(this.state);
   }
 
   render() {
+    const notesObj = this.props.notes;
+    let noteIds = [];
+    for(let note in notesObj){
+      noteIds.push(note);
+    }
+    let defaultNote = this.props.note || this.props.notes[noteIds[0]] || '';
     return (
       <div className='edit-note-container'>
         <form className='edit-note-form' onSubmit={this.handleSubmit}>
           <input
             className='title'
             type='text'
-            value="whatever for now...."
-            onChange={this.handleChange('title')} />
+            value={defaultNote.title}
+            onChange={this.handleTitle} />
           <br></br>
-          <input
+          <textarea
+            type='text'
             className='body'
-            type='textarea'
-            onChange={this.handleChange('body')} />
+            value={defaultNote.body}
+            onChange={this.handleBody} />
           <input
             className='edit-submit'
             type='submit'
@@ -61,8 +78,11 @@ class EditNoteForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { notes: state.notes };
+const mapStateToProps = (state, passedProps) => {
+  return {
+    notes: passedProps.notes,
+    selectedNoteId: passedProps.selectedNote,
+  };
 };
 
 const mapDispatchToProps = dispatch => ({

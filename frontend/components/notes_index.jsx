@@ -5,32 +5,53 @@ import EditNoteForm from './edit_note_form';
 class NotesIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.noteCount = 0;
+
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      selectedNote: null
+    };
   }
 
-  componentWillMount() {
-    // debugger
-    let notes = this.props.fetchNotes();
-    this.noteCount = Object.keys(notes).length;
-    console.log(this.noteCount);
-    return notes;
+  componentDidMount() {
+    this.props.fetchNotes();
+  }
+
+  handleClick(id) {
+    return (e) => {
+      this.setState({
+        selectedNote: id
+      });
+    };
   }
 
   render() {
+    // debugger
     const notesObj = this.props.notes;
-    const notes = [];
+    let notes = [];
     for(let note in notesObj){
       notes.push(notesObj[note]);
     }
+    notes = notes.sort((note) => note.id );
+    debugger
     return(
       <div className='notes-wrapper'>
         <ul className='user-notes'>
-          <li className='fixed-first-note'>
-            NOTES
-          </li>
-          {notes.map ( (note, idx) => <NotesIndexItem key={idx} note={note} /> )}
+            <li className='fixed-first-note'>
+              <p>NOTES</p>
+              <p className="note-count">{this.props.noteCount}</p>
+            </li>
+            {notes.map ( (note) => <button
+                                        onClick={this.handleClick(note.id)}
+                                        key={note.id}
+                                        value={note.id}>
+                                            <NotesIndexItem
+                                            note={note} />
+                                        </button> )}
         </ul>
-        <EditNoteForm />
+        <EditNoteForm
+          notes={this.props.notes}
+          note={this.props.notes[this.state.selectedNote]}
+         />
       </div>
     );
   }

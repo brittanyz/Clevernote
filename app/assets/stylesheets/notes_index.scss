@@ -14,12 +14,12 @@
   background-color: #00cc00;
 }
 
-.note-body:hover{
+.note-list-item:hover .note-body {
   color: white;
 }
 
-.note-title:hover {
-  color: white;
+.note-list-item:hover .note-title {
+   color: white;
 }
 
 .note-list-item {
@@ -52,6 +52,7 @@
 
 .fixed-first-note {
   border-bottom: 1px solid #e6e6e6;
+  justify-content: space-between;
   height: 120px;
   width: 350px;
   padding: 18px;
@@ -60,3 +61,7 @@
   color: #606060;
   font-size: 24px;
 }
+//
+// .fixed-first-note .note-count {
+//   align-self: baseline;
+// }
