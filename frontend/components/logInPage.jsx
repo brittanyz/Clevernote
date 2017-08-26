@@ -6,7 +6,6 @@ const LogInPage = () => {
     <div className="login-page">
       <div className="login-header" >
         <img className="ele" src={window.images.logo} />
-        <div className='logging-in'>Sign In</div>
       </div>
       <div className="login">
         <ActualForm formType="login" />
@@ -16,3 +15,5 @@ const LogInPage = () => {
 };
 
 export default LogInPage;
+
+// <div className='logging-in'>Sign In</div>

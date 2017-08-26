@@ -24,6 +24,10 @@ class NotesIndex extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({selectedNote: Object.keys(nextProps.notes)[0]});
+  }
+
   render() {
     // debugger
     const notesObj = this.props.notes;
@@ -32,7 +36,6 @@ class NotesIndex extends React.Component {
       notes.push(notesObj[note]);
     }
     notes = notes.sort((note) => note.id );
-    debugger
     return(
       <div className='notes-wrapper'>
         <ul className='user-notes'>
