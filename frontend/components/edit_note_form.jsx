@@ -25,22 +25,23 @@ class EditNoteForm extends React.Component {
   }
 
   handleBody(e){
+    if (this.timeoutId) {
+
+      clearTimeout(this.timeoutId);
+    }
     e.preventDefault();
+    this.timeoutId = setTimeout(this.handleSubmit, 5000);
     this.setState({
       body: e.currentTarget.value,
     });
     console.log('handling body');
-    this.props.editNote(this.state);
+  }
+  //
+  componentWillReceiveProps(newProps) {
+    this.setState({title: newProps.note.title, body: newProps.note.body});
+    console.log('receive props');
   }
 
-  // componentWillReceiveProps() {
-  //   console.log('receive props');
-  //   // if (this.props.allNotes.length > 0) {this.props.editNote(this.state);}
-  // }
-  // componentDidMount () {
-  //   console.log('didMount');
-  //   // this.props.fetchNote()
-  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -60,13 +61,13 @@ class EditNoteForm extends React.Component {
           <input
             className='title'
             type='text'
-            value={defaultNote.title}
+            value={this.state.title}
             onChange={this.handleTitle} />
           <br></br>
           <textarea
             type='text'
             className='body'
-            value={defaultNote.body}
+            value={this.state.body}
             onChange={this.handleBody} />
           <input
             className='edit-submit'

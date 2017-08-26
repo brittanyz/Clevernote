@@ -13,8 +13,7 @@ class Header extends React.Component {
           <img className="elephant" src={window.images.logo} />
           <h1 className="Clevernote">CLEVERNOTE</h1>
         </div>
-        <Link to={"/signup"}>Log out</Link>
-        <Link to={"/login"}>Log in</Link>
+        <Link to={"/login"}>Login</Link>
       </header>
     )
   }
