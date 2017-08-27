@@ -17,18 +17,13 @@ class ActualForm extends React.Component {
       }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemoLogin = this.handleDemoLogin.bind(this);
   }
 
   handleSubmit (e) {
     e.preventDefault();
-    let user;
-    if (this.state.username === '' && this.state.password === '') {
-      user = Object.assign({}, this.state.demoUser);
-      this.props.login(user);
-    } else {
-      user = Object.assign({}, this.state);
+      let user = Object.assign({}, this.state);
       this.props.processForm(user);
-    }
   }
 
   handleChange(inputKey){
@@ -37,6 +32,12 @@ class ActualForm extends React.Component {
         [inputKey]: e.currentTarget.value
       });
     };
+  }
+
+  handleDemoLogin(e){
+    e.preventDefault();
+    let user = Object.assign({}, this.state.demoUser);
+    this.props.login(user);
   }
 
   componentDidMount() {
@@ -59,7 +60,7 @@ class ActualForm extends React.Component {
           placeholder="Password"
           onChange={this.handleChange('password')}/>
         <input className="login-button" type="submit" value={button}/>
-        <input className="login-button" type="submit" value='Demo Login'/>
+        <input className="login-button" type="submit" value='Demo Login' onClick={this.handleDemoLogin}/>
         <Errors />
       </form>
 
@@ -86,7 +87,3 @@ const mapDispatchToProps = (dispatch, {formType}) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActualForm);
-
-
-// <button>Demo Login</button>
-// <Link to='/login' className="login-button">Link to Demo Login</Link>

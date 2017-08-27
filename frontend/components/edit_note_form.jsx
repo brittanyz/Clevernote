@@ -5,8 +5,9 @@ import { fetchNotes, editNote } from '../actions/notes_actions';
 class EditNoteForm extends React.Component {
   constructor(props) {
     super(props);
-    let defaultNote = this.props.note || {title: '', body:'', notebook_id: null};
+    let defaultNote = this.props.note || {id: null, title: '', body:'', notebook_id: null};
     this.state = {
+      id: defaultNote.id,
       title: defaultNote.title,
       body: defaultNote.body,
       notebook_id: defaultNote.note_id,
@@ -21,30 +22,26 @@ class EditNoteForm extends React.Component {
     this.setState({
       title: e.currentTarget.value,
     });
-    console.log('handling title');
   }
 
   handleBody(e){
     if (this.timeoutId) {
-
       clearTimeout(this.timeoutId);
     }
     e.preventDefault();
-    this.timeoutId = setTimeout(this.handleSubmit, 5000);
+    this.timeoutId = setTimeout(this.handleSubmit, 1500);
     this.setState({
       body: e.currentTarget.value,
     });
-    console.log('handling body');
   }
-  //
+
   componentWillReceiveProps(newProps) {
-    this.setState({title: newProps.note.title, body: newProps.note.body});
-    console.log('receive props');
+    this.setState({id: newProps.note.id, title: newProps.note.title, body: newProps.note.body});
   }
 
 
   handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.editNote(this.state);
   }
 
@@ -66,13 +63,9 @@ class EditNoteForm extends React.Component {
           <br></br>
           <textarea
             type='text'
-            className='body'
+            className='edit-body'
             value={this.state.body}
             onChange={this.handleBody} />
-          <input
-            className='edit-submit'
-            type='submit'
-            value='temporary submit' />
         </form>
       </div>
     );
@@ -82,7 +75,7 @@ class EditNoteForm extends React.Component {
 const mapStateToProps = (state, passedProps) => {
   return {
     notes: passedProps.notes,
-    selectedNoteId: passedProps.selectedNote,
+    selectedNote: passedProps.note,
   };
 };
 

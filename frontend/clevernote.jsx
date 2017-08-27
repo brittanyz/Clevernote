@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import { login, logout, signup } from './actions/sessions_actions';
-import { fetchNote, fetchNotes, deleteNote, createNote } from './actions/notes_actions';
+import { fetchNote, fetchNotes, deleteNote, createNote, editNote } from './actions/notes_actions';
 import Root from './components/root';
 
 
@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // window.login = login;
   window.logout = logout;
   // window.fetchNote = fetchNote;
+  window.editNote = editNote;
   // window.fetchNotes = fetchNotes;
-  // window.createNote = createNote;
+  window.createNote = createNote;
   // window.deleteNote = deleteNote;
   window.dispatch = store.dispatch;
 });

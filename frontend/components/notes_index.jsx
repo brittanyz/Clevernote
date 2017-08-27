@@ -5,7 +5,6 @@ import EditNoteForm from './edit_note_form';
 class NotesIndex extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       selectedNote: null
@@ -29,13 +28,13 @@ class NotesIndex extends React.Component {
   }
 
   render() {
-    // debugger
     const notesObj = this.props.notes;
     let notes = [];
     for(let note in notesObj){
       notes.push(notesObj[note]);
     }
     notes = notes.sort((note) => note.id );
+
     return(
       <div className='notes-wrapper'>
         <ul className='user-notes'>
