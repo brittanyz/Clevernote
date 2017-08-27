@@ -8,4 +8,10 @@ class Notebook < ApplicationRecord
 
   has_many :notes,
     foreign_key: :notebook_id
+
+    # after_create do
+    #   first_note = Note.create!(title: 'Title...', body:
+    #                     "Add your note here...", notebook_id: self.id)
+    #   self.save!
+    # end
 end

@@ -21,7 +21,7 @@ class Api::NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    if current_user.notebooks.exists?(id: @note.notebook_id) && @note.save
+    if current_user.notebooks.exists?(id: @note.notebook_id) && @note.update(note_params)
       render :show
     else @errors = @note.errors.full_messages
       render json: @errors, status: 422

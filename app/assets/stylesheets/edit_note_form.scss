@@ -10,6 +10,7 @@
 
 .title {
   font-family: 'Montserrat', sans-serif;
+  color: #00cc00;
   font-weight: 100;
   font-size: 40px;
   padding-top: 8px;
@@ -19,7 +20,9 @@
 .title::placeholder{
   color: #00cc00;
 }
-.body {
+.edit-body {
+  height: 725px;
+  width: 100%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
   font-size: 14px;

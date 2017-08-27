@@ -11,8 +11,16 @@ class User < ApplicationRecord
     self.save!
   end
 
+  after_create do
+    first_note = Note.create!(title: "Welcome to Clevernote", body: "Welcome to Clevernote," +
+      " your second brain! This is a place for you to capture, organize, and share you notes." +
+      " our best ideas are always with you and in sync.", notebook_id: self.default_notebook_id)
+    self.save!
+  end
+
   has_many :notebooks,
-    foreign_key: :author_id
+    foreign_key: :author_id,
+    class_name: :Notebook
 
   has_many :notes,
     through: :notebooks,
