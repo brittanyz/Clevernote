@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Root store={store}/>, root);
   // window.signup = signup;
   // window.login = login;
-  window.logout = logout;
+  // window.logout = logout;
   // window.fetchNote = fetchNote;
-  window.editNote = editNote;
+  // window.editNote = editNote;
   // window.fetchNotes = fetchNotes;
-  window.createNote = createNote;
+  // window.createNote = createNote;
   // window.deleteNote = deleteNote;
   window.dispatch = store.dispatch;
 });
