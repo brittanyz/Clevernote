@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
       return merge ({}, state, {[note.id]: note});
     case RECEIVE_ERRORS:
       let errors = action.errors.responseJSON;
-      return merge({}, state, {[note.id]: note}, { errors });
+      return merge({}, state, { errors });
     default:
       return initialState;
   }

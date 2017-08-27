@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchNotes, editNote } from '../actions/notes_actions';
+import { fetchNotes, editNote, createNote } from '../actions/notes_actions';
+// import NoteHeader from './note_header';
+import ReactQuill from 'react-quill';
 
-class EditNoteForm extends React.Component {
+class NoteForm extends React.Component {
   constructor(props) {
     super(props);
-    let defaultNote = this.props.note || {id: null, title: '', body:'', notebook_id: null};
+    debugger
+    let defaultNote = this.props.note ||
+          {id: null,
+          title: 'Title your note',
+          body:'just start typing...',
+          notebook_id: null};
     this.state = {
       id: defaultNote.id,
       title: defaultNote.title,
@@ -28,14 +35,24 @@ class EditNoteForm extends React.Component {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
-    e.preventDefault();
+    // e.preventDefault();
     this.timeoutId = setTimeout(this.handleSubmit, 1500);
+
+    // this is new
+    // let param;
+
+    // if (typeof e.target === 'undefined') {
+    //   param = {body: e};
+    // }
+
+
     this.setState({
       body: e.currentTarget.value,
     });
   }
 
   componentWillReceiveProps(newProps) {
+
     this.setState({id: newProps.note.id, title: newProps.note.title, body: newProps.note.body});
   }
 
@@ -53,21 +70,25 @@ class EditNoteForm extends React.Component {
     }
     let defaultNote = this.props.note || this.props.notes[noteIds[0]] || '';
     return (
-      <div className='edit-note-container'>
-        <form className='edit-note-form' onSubmit={this.handleSubmit}>
-          <input
-            className='title'
-            type='text'
-            value={this.state.title}
-            onChange={this.handleTitle} />
-          <br></br>
-          <textarea
-            type='text'
-            className='edit-body'
-            value={this.state.body}
-            onChange={this.handleBody} />
+
+        <div className='edit-note-container'>
+
+          <form className='edit-note-form' onSubmit={this.handleSubmit}>
+            <ReactQuill />
+            <input
+              className='title'
+              type='text'
+              value={this.state.title}
+              onChange={this.handleTitle} />
+            <br></br>
+            <textarea
+              type='text'
+              className='edit-body'
+              value={this.state.body}
+              onChange={this.handleBody} />
         </form>
-      </div>
+        </div>
+
     );
   }
 }
@@ -82,6 +103,14 @@ const mapStateToProps = (state, passedProps) => {
 const mapDispatchToProps = dispatch => ({
   fetchNotes: () => dispatch(fetchNotes()),
   editNote: note => dispatch(editNote(note)),
+  createNote: note => dispatch(createNote(note)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditNoteForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
+
+
+// <ReactQuill
+//   className='edit-body'
+//   value={this.state.body}
+//   onChange={this.handleBody}
+//   />
