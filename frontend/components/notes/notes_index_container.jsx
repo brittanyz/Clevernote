@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchNotes, fetchNote } from '../actions/notes_actions';
+import { fetchNotes, fetchNote } from '../../actions/notes_actions';
 import NotesIndex from './notes_index';
 
 const mapStateToProps = (state) => {

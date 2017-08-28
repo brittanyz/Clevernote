@@ -23,7 +23,8 @@ class Api::NotesController < ApplicationController
     @note = Note.find(params[:id])
     if current_user.notebooks.exists?(id: @note.notebook_id) && @note.update(note_params)
       render :show
-    else @errors = @note.errors.full_messages
+    else
+      @errors = @note.errors.full_messages
       render json: @errors, status: 422
     end
   end
@@ -38,7 +39,12 @@ class Api::NotesController < ApplicationController
 
   def destroy
     @note = Note.find(params[:id])
-    @note.destroy
+    if @note.destroy
+      render :show
+    else
+      @errors = @note.errors.full_messages
+      render json: @errors, status: 422
+    end
   end
 
   private
@@ -48,3 +54,5 @@ class Api::NotesController < ApplicationController
   end
 
 end
+
+# take notebook id from params and uncomment in create

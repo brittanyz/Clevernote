@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { login, signup } from '../actions/sessions_actions';
+import { login, signup } from '../../actions/sessions_actions';
 import GreetingContainer from './greeting_container';
 import HeaderContainer from './header_container';
 import ActualForm from './actual_form';

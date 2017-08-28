@@ -1,18 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchNotes, editNote, createNote } from '../actions/notes_actions';
-// import NoteHeader from './note_header';
+import { fetchNotes, editNote, createNote } from '../../actions/notes_actions';
+import { withRouter } from 'react-router-dom';
+import NewNote from './new_note';
 import ReactQuill from 'react-quill';
 
 class NoteForm extends React.Component {
+
   constructor(props) {
     super(props);
-    debugger
-    let defaultNote = this.props.note ||
-          {id: null,
-          title: 'Title your note',
-          body:'just start typing...',
-          notebook_id: null};
+    let defaultNote = this.props.note || this.props.newNote;
     this.state = {
       id: defaultNote.id,
       title: defaultNote.title,
@@ -52,14 +49,23 @@ class NoteForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-
-    this.setState({id: newProps.note.id, title: newProps.note.title, body: newProps.note.body});
+    // if (newProps.location.pathname === '/new') {
+    //   this.setState({id: null, title: "Title", body: "start typing"});
+    // } else
+    if (newProps.note !== undefined) {
+      this.setState({id: newProps.note.id || null, title: newProps.note.title, body: newProps.note.body});
+    }
   }
 
 
   handleSubmit(e) {
     // e.preventDefault();
-    this.props.editNote(this.state);
+    if (this.props.location.pathname === '/new') {
+      this.setState({notebook_id: 4});
+      this.props.createNote(this.state);
+    } else {
+      this.props.editNote(this.state);
+    }
   }
 
   render() {
@@ -68,27 +74,30 @@ class NoteForm extends React.Component {
     for(let note in notesObj){
       noteIds.push(note);
     }
-    let defaultNote = this.props.note || this.props.notes[noteIds[0]] || '';
+    // if (this.props.location.pathname === '/') {
+    //   let defaultNote = this.props.note || this.props.notes[noteIds[0]] || '';
+    // } else if (this.props.location.pathname === '/new') {
+    //   // debugger
+    //   let defaultNote = this.props.newNote;
+    // }
+
     return (
-
-        <div className='edit-note-container'>
-
-          <form className='edit-note-form' onSubmit={this.handleSubmit}>
-            <ReactQuill />
-            <input
-              className='title'
-              type='text'
-              value={this.state.title}
-              onChange={this.handleTitle} />
-            <br></br>
-            <textarea
-              type='text'
-              className='edit-body'
-              value={this.state.body}
-              onChange={this.handleBody} />
+      <div className='edit-note-container'>
+        <form className='edit-note-form' onSubmit={this.handleSubmit}>
+          <ReactQuill />
+          <input
+            className='title'
+            type='text'
+            value={this.state.title}
+            onChange={this.handleTitle} />
+          <br></br>
+          <textarea
+            type='text'
+            className='edit-body'
+            value={this.state.body}
+            onChange={this.handleBody} />
         </form>
-        </div>
-
+      </div>
     );
   }
 }
@@ -97,6 +106,7 @@ const mapStateToProps = (state, passedProps) => {
   return {
     notes: passedProps.notes,
     selectedNote: passedProps.note,
+    newNote : {title: 'Title your note', body: 'just start typing...', notebook_id: null }
   };
 };
 
@@ -106,7 +116,7 @@ const mapDispatchToProps = dispatch => ({
   createNote: note => dispatch(createNote(note)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NoteForm));
 
 
 // <ReactQuill
