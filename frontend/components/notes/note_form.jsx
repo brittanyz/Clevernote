@@ -9,14 +9,12 @@ class NoteForm extends React.Component {
 
   constructor(props) {
     super(props);
-
     let defaultNote = this.props.note || this.props.newNote;
-
     this.state = {
       id: defaultNote.id,
       title: defaultNote.title,
       body: defaultNote.body,
-      notebook_id: defaultNote.note_id,
+      notebook_id: defaultNote.notebookId || this.props.notebookId,
     };
     this.handleTitle = this.handleTitle.bind(this);
     this.handleBody = this.handleBody.bind(this);
@@ -31,7 +29,6 @@ class NoteForm extends React.Component {
       this.timeoutId = setTimeout(this.handleSubmit, 2000);
     }
     e.preventDefault();
-
     this.setState({
       title: e.currentTarget.value,
     });
@@ -61,18 +58,21 @@ class NoteForm extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.note !== undefined) {
-      this.setState({id: newProps.note.id || null, title: newProps.note.title, body: newProps.note.body});
+      this.setState({id: newProps.note.id || null,
+                    title: newProps.note.title,
+                    body: newProps.note.body,
+                    notebookId: this.props.notebookId});
     }
   }
 
   handleSubmit(e) {
-    // debugger
     if (typeof e !== 'undefined') {
       e.preventDefault();
     }
-    // needed to manually set the notebook id since notebooks havent been createed yet.
-    // maybe later state will already be set to the current notebook id??
-    this.setState({notebook_id: 4}, () => this.props.submit(this.state).then(() => {
+
+    // right now...
+    // debugger
+    this.setState({notebook_id: this.props.notebookId}, () => this.props.submit(this.state).then(() => {
       if (this.props.location.pathname === '/new') {
         this.props.history.push('/');
       }
@@ -80,12 +80,12 @@ class NoteForm extends React.Component {
   }
 
   render() {
-    let submit;
-    const notesObj = this.props.notes;
-    let noteIds = [];
-    for(let note in notesObj){
-      noteIds.push(note);
-    }
+    // let submit;
+    // const notesObj = this.props.notes;
+    // let noteIds = [];
+    // for(let note in notesObj){
+    //   noteIds.push(note);
+    // }
 
 
     return (
@@ -112,19 +112,6 @@ class NoteForm extends React.Component {
   }
 }
 
-// const mapStateToProps = (state, passedProps) => {
-//   return {
-//     notes: passedProps.notes,
-//     selectedNote: passedProps.note,
-//     newNote : {title: 'Title your note', body: 'just start typing...', notebook_id: null }
-//   };
-// };
-//
-// const mapDispatchToProps = dispatch => ({
-//   fetchNotes: () => dispatch(fetchNotes()),
-//   editNote: note => dispatch(editNote(note)),
-//   createNote: note => dispatch(createNote(note)),
-// });
 
 export default withRouter(NoteForm);
 

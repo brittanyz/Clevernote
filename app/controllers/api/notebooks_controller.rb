@@ -1,11 +1,11 @@
 class Api::NotebooksController < ApplicationController
-
-  def new
-  end
+  #
+  # def new
+  # end
 
   def create
     @notebook = Notebook.new(notebook_params)
-    @notebook.author = current_user
+    # @notebook.author = current_user
     if @notebook.save
       render :show
     else
@@ -32,7 +32,7 @@ class Api::NotebooksController < ApplicationController
   end
 
   def show
-    @notebook = current_user.notebooks.find(params[:id]])
+    @notebook = current_user.notebooks.find(params[:id])
   end
 
   def destroy
