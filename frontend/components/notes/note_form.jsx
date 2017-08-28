@@ -71,7 +71,7 @@ class NoteForm extends React.Component {
     }
 
     // right now...
-    // debugger
+    //
     this.setState({notebook_id: this.props.notebookId}, () => this.props.submit(this.state).then(() => {
       if (this.props.location.pathname === '/new') {
         this.props.history.push('/');
