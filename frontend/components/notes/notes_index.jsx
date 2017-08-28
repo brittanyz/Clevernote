@@ -53,7 +53,7 @@ class NotesIndex extends React.Component {
     // notes = notes.sort((note) => Date.parse(note.updated_at));
     //
     notes = quickSort(notes);
-    // 
+    //
     notes = notes.reverse();
     //
     return(
