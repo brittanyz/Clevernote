@@ -14,7 +14,7 @@ class NotesIndexItem extends React.Component{
 
   handleBodyLength() {
     if (this.props.note.body.length > 150) {
-      return this.props.note.body.slice(0, 150) + '.....';
+      return this.props.note.body.slice(0, 135) + '.....';
     } else {
       return this.props.note.body;
     }
@@ -22,9 +22,7 @@ class NotesIndexItem extends React.Component{
 
   handleClick(e) {
     e.preventDefault();
-    this.props.deleteNote(this.props.note.id).then(
-      () => this.props.history.push('/')
-    );
+    this.props.deleteNote(this.props.note.id);
   }
 
   componentDidMount() {

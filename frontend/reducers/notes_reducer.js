@@ -19,7 +19,9 @@ export default (state = initialState, action) => {
       let note = action.note;
       return merge ({}, state, {[note.id]: note});
     case REMOVE_NOTE:
-      return merge({}, state, delete state[action.noteId]);
+      let newState = merge({}, state);
+      delete newState[action.noteId.id];
+      return newState;
     case RECEIVE_ERRORS:
       let errors = action.errors.responseJSON;
       return merge({}, state, { errors });

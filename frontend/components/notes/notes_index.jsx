@@ -1,5 +1,7 @@
 import React from 'react';
 import NotesIndexItem from './notes_index_item';
+import { connect } from 'react-redux';
+import { fetchNotes, editNote } from '../../actions/notes_actions';
 import NewNote from './new_note';
 import NoteHeader from './note_header';
 import NoteForm from './note_form';
@@ -20,7 +22,10 @@ class NotesIndex extends React.Component {
   }
 
   componentWillMount () {
-    // debugger
+    this.setState({
+      notes: this.props.fetchNotes()
+    });
+
   }
 
   handleClick(id) {
@@ -32,11 +37,7 @@ class NotesIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (nextProps.location.pathname === '/new') {
-    //   this.setState({})
-    // } else {
-      this.setState({selectedNote: Object.keys(nextProps.notes)[0]});
-    // }
+    this.setState({selectedNote: Object.keys(nextProps.notes)[0]});
   }
 
   render() {
@@ -47,7 +48,6 @@ class NotesIndex extends React.Component {
     }
     notes = notes.sort((note) => note.id );
 
-    // const form = (this.props.location.pathname === '/') ? 'editNote' : 'createNote';
     return(
       <div className='notes-wrapper'>
         <LeftNavBar/>
@@ -66,11 +66,27 @@ class NotesIndex extends React.Component {
         </ul>
         <NoteForm
           notes={this.props.notes}
-          note={this.props.notes[this.state.selectedNote]}
+          note={this.props.notes[this.state.selectedNote] || this.props.newNote}
+          submit={this.props.editNote}
+          button={null}
          />
       </div>
     );
   }
 }
 
-export default withRouter(NotesIndex);
+
+const mapStateToProps = (state, passedProps) => {
+  return {
+    notes: passedProps.notes,
+    selectedNote: passedProps.note,
+    newNote: {title: 'Title your note', body: 'just start typing...', notebook_id: null }
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  fetchNotes: () => dispatch(fetchNotes()),
+  editNote: note => dispatch(editNote(note)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NotesIndex));

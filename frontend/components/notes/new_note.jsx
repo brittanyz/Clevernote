@@ -4,24 +4,32 @@ import { createNote } from '../../actions/notes_actions';
 import { withRouter } from 'react-router-dom';
 import NoteForm from './note_form';
 
-const NewNotePage = () => {
+class NewNote extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return(
-    <div className="new-note">
-      <NoteForm />
-    </div>
-  );
-};
-
-export default NewNotePage;
+  render() {
+    const button = <button className='new-note-submit'>submit</button>;
+    return (
+      <div className="new-note">
+          <NoteForm
+            note={this.props.newNote}
+            submit={this.props.createNote}
+            button={button}
+            />
+      </div>
+    );
+  }
+}
 
 //
-// const mapStateToProps = (state) => ({
-//   newNote : {title: 'Title your note', body: 'just start typing...', notebook_id: null }
-// });
-//
-// const mapDispatchToProps = dispatch => ({
-//   createNote: (noteData) => dispatch(createNote(noteData)),
-// });
+const mapStateToProps = (state) => ({
+  newNote : {title: '', body: '', notebook_id: null }
+});
 
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewNote));
+const mapDispatchToProps = dispatch => ({
+  createNote: (noteData) => dispatch(createNote(noteData)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewNote));

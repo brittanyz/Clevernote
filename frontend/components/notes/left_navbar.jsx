@@ -8,7 +8,6 @@ class LeftNavBar extends React.Component {
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    // this.handleNew = this.handleNew.bind(this);
   }
 
   handleClick(e) {
@@ -24,7 +23,7 @@ class LeftNavBar extends React.Component {
   render() {
     return (
       <div className='left-navbar'>
-        <Link to={"/new"} className='new'>+</Link>
+        <Link to={"/new"} className='new' onClick={this.handleToggle}>+</Link>
         <button onClick={this.handleClick} className='logout'>Logout</button>
       </div>
     );
