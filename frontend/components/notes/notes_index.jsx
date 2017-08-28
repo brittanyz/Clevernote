@@ -7,6 +7,7 @@ import NoteHeader from './note_header';
 import NoteForm from './note_form';
 import LeftNavBar from './left_navbar';
 import { withRouter } from 'react-router-dom';
+import quickSort from './quick_sort';
 
 class NotesIndex extends React.Component {
   constructor(props) {
@@ -37,22 +38,24 @@ class NotesIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // debugger
+    //
     this.setState({selectedNote: Object.keys(nextProps.notes).reverse[0]});
   }
 
   render() {
-    // debugger
+    //
     const notesObj = this.props.notes;
     let notes = [];
     for(let note in notesObj){
       notes.push(notesObj[note]);
     }
 
-    notes = notes.sort((note) => Date.parse(note.updated_at));
-    debugger
+    // notes = notes.sort((note) => Date.parse(note.updated_at));
+    //
+    notes = quickSort(notes);
+    // 
     notes = notes.reverse();
-    // debugger
+    //
     return(
       <div className='notes-wrapper'>
         <LeftNavBar/>
