@@ -1,5 +1,5 @@
 import React from 'react';
-import { login, signup, clearErrors } from '../actions/sessions_actions';
+import { login, signup, clearErrors } from '../../actions/sessions_actions';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import Errors from './errors';

@@ -4,6 +4,7 @@ import { receiveErrors } from './sessions_actions';
 export const RECEIVE_NOTES = 'RECEIVE_NOTES';
 export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
+export const REMOVE_NOTE = 'REMOVE_NOTE';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
@@ -17,6 +18,12 @@ export const receiveNote = (note) => ({
 export const receiveNotes = (notes) => ({
   type: RECEIVE_NOTES,
   notes,
+  errors: [],
+});
+
+export const removeNote = (noteId) => ({
+  type: REMOVE_NOTE,
+  noteId,
   errors: [],
 });
 
@@ -35,7 +42,7 @@ export const editNote = (noteData) => dispatch => (
 
 export const deleteNote = (noteId) => dispatch => (
   APIUtil.deleteNote(noteId).then(
-    note => dispatch(receiveNote(note)),
+    noteId => dispatch(removeNote(noteId)),
     errors => dispatch(receiveErrors(errors)))
 );
 

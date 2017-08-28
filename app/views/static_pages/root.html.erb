@@ -6,7 +6,10 @@
     ).html_safe %>
   <% end %>
 
-  window.images = { logo: "<%=image_path('clevernote-logo.png')%>" }
+  window.images = {
+    logo: "<%=image_path('clevernote-logo.png')%>" ,
+    trash: "<%=image_path('delete-icon.png')%>",
+  }
 </script>
 
 <main id="root">App</main>

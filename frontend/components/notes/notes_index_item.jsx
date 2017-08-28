@@ -1,12 +1,15 @@
 import React from 'react';
+import { deleteNote } from '../../actions/notes_actions';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router';
 import EditNoteForm from './note_form';
+import { withRouter } from 'react-router-dom';
 
 class NotesIndexItem extends React.Component{
   constructor (props) {
     super(props);
     this.handleBodyLength = this.handleBodyLength.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleBodyLength() {
@@ -17,11 +20,25 @@ class NotesIndexItem extends React.Component{
     }
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    this.props.deleteNote(this.props.note.id).then(
+      () => this.props.history.push('/')
+    );
+  }
+
+  componentDidMount() {
+    // debugger
+  }
+
   render(){
     return (
       <div
         className='note-list-item'>
-        <p className='note-title'>{this.props.note.title}</p>
+        <div className='title-and-delete'>
+          <p className='note-title'>{this.props.note.title}</p>
+            <img className="trash" onClick={this.handleClick} src={window.images.trash} />
+        </div>
         <p className='note-body'>{this.handleBodyLength()}</p>
       </div>
     );
@@ -33,4 +50,8 @@ const mapStateToProps = (state, ownProps) => ({
   selected: ownProps.selected,
 });
 
-export default connect(mapStateToProps, null)(NotesIndexItem);
+const mapDispatchToProps = dispatch => ({
+  deleteNote: (id) => dispatch(deleteNote(id))
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NotesIndexItem));
