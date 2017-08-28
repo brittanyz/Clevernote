@@ -28,7 +28,7 @@ class NotesIndexItem extends React.Component{
   }
 
   convertTime(){
-    
+
     const timeArray = this.props.note.updated_at.split('T');
     // ["2017-08-28", "18:44:14.672Z"]
     const now = new Date();
