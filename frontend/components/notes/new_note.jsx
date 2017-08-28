@@ -15,6 +15,7 @@ class NewNote extends React.Component {
       <div className="new-note">
           <NoteForm
             note={this.props.newNote}
+            notebookId={this.props.notebookId}
             submit={this.props.createNote}
             button={button}
             />
@@ -25,7 +26,8 @@ class NewNote extends React.Component {
 
 //
 const mapStateToProps = (state) => ({
-  newNote : {title: '', body: '', notebook_id: null }
+  newNote: {title: '', body: ''},
+  notebookId: state.session.currentUser.notebookId,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -37,17 +37,22 @@ class NotesIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({selectedNote: Object.keys(nextProps.notes)[0]});
+    // debugger
+    this.setState({selectedNote: Object.keys(nextProps.notes).reverse[0]});
   }
 
   render() {
+    // debugger
     const notesObj = this.props.notes;
     let notes = [];
     for(let note in notesObj){
       notes.push(notesObj[note]);
     }
-    notes = notes.sort((note) => note.id );
 
+    notes = notes.sort((note) => Date.parse(note.updated_at));
+    debugger
+    notes = notes.reverse();
+    // debugger
     return(
       <div className='notes-wrapper'>
         <LeftNavBar/>
@@ -65,8 +70,8 @@ class NotesIndex extends React.Component {
                                         </button> )}
         </ul>
         <NoteForm
-          notes={this.props.notes}
-          note={this.props.notes[this.state.selectedNote] || this.props.newNote}
+          notes={notes}
+          note={this.props.notes[this.state.selectedNote] || notes[0] || this.props.newNote}
           submit={this.props.editNote}
           button={null}
          />

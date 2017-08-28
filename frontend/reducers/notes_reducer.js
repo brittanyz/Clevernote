@@ -6,8 +6,7 @@ import {
   CLEAR_ERRORS } from '../actions/notes_actions';
 import { merge } from 'lodash';
 
-const initialState = {
-};
+const initialState = {};
 
 export default (state = initialState, action) => {
   Object.freeze(state);
