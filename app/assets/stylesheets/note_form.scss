@@ -11,8 +11,24 @@
 }
 
 .new-note {
+  display: flex;
+  justify-content: center;
+  // margin-bottom: 20px;
   width: 100%;
   height: 100%;
+}
+
+.new-note-submit {
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  width: 70px;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: #00cc00;
+  color: white;
+  // border: 2px solid #00cc00;
+  cursor: pointer;
 }
 
 .title, .edit-body {
