@@ -11,13 +11,15 @@ const initialState = {};
 
 export default (state = initialState, action) => {
   Object.freeze(state);
+  // debugger
   switch(action.type) {
     case RECEIVE_NOTEBOOKS:
       let notebooks = action.notebooks;
       return merge ({}, state, notebooks);
     case RECEIVE_NOTEBOOK:
-      let notebook = action.notebooks;
-      return merge ({}, state, {[action.notebook.id]: notebook});
+      debugger
+      let notebook = action.notebook;
+      return merge ({}, state, {[notebook.id]: notebook});
     case REMOVE_NOTEBOOK:
       let newState = merge({}, state);
       delete newState[action.notebook.id];
@@ -26,6 +28,6 @@ export default (state = initialState, action) => {
       let errors = action.errors.responseJSON;
       return merge({}, state, { errors });
     default:
-      return initialState;
+      return state;
   }
 };

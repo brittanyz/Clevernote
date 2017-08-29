@@ -28,11 +28,12 @@ export const removeNotebook = (notebook) => ({
   errors: [],
 });
 
-export const createNotebook = (notebookData) => dispatch => (
-  APIUtil.createNotebook(notebookData).then(
+export const createNotebook = (notebookData) => dispatch => {
+  return APIUtil.createNotebook(notebookData).then(
     notebook => dispatch(receiveNotebook(notebook)),
-    errors => dispatch(receiveErrors(errors)))
-);
+    errors => dispatch(receiveErrors(errors)));
+};
+// );
 
 export const deleteNotebook = (notebookId) => dispatch => (
   APIUtil.deleteNotebook(notebookId).then(

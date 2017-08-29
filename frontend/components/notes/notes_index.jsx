@@ -1,32 +1,51 @@
 import React from 'react';
 import NotesIndexItem from './notes_index_item';
-import { connect } from 'react-redux';
-import { fetchNotes, editNote } from '../../actions/notes_actions';
 import NewNote from './new_note';
 import NoteHeader from './note_header';
 import NoteForm from './note_form';
 import LeftNavBar from './left_navbar';
 import { withRouter } from 'react-router-dom';
 import quickSort from './quick_sort';
+import NotebooksModal from '../notebooks/notebooks_modal';
 
 class NotesIndex extends React.Component {
   constructor(props) {
     super(props);
+    let notebook = this.props.type === "notebook" ? this.props.selectedNotebook : null;
+
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      selectedNote: null
+      selectedNotebook: notebook,
+      selectedNote: null,
+      modalOpen: false,
     };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchNotes();
-  }
+  // componentDidMount() {
+  //   if (this.props.)
+  //   this.props.fetchNotes();
+  // }
+  //
+  // componentWillMount () {
+  //   // debugger
+  //   if (this.props.selectedNotebook) {
+  //     this.setState({
+  //       notes: this.props.selectedNotebook.notes
+  //     });
+  //   } else {
+  //     this.setState({
+  //       notes: this.props.fetchNotes(),
+  //     });
+  //   }
+  // }
 
-  componentWillMount () {
-    this.setState({
-      notes: this.props.fetchNotes()
+  componentDidMount () {
+    debugger
+    this.props.fetchNotes().then( () => {
+      this.setState({selectedNote: Object.keys(this.props.notes).reverse[0]});
     });
-
   }
 
   handleClick(id) {
@@ -37,13 +56,24 @@ class NotesIndex extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    //
-    this.setState({selectedNote: Object.keys(nextProps.notes).reverse[0]});
+  openModal() {
+    this.setState({
+      modalOpen: true,
+    });
   }
 
+  closeModal() {
+    this.setState({
+      modalOpen: false,
+    });
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   // this.setState({selectedNotebookId: nextProps.selectedNotebook.id});
+  //   this.setState({selectedNote: Object.keys(nextProps.notes).reverse[0]});
+  // }
+
   render() {
-    //
     const notesObj = this.props.notes;
     let notes = [];
     for(let note in notesObj){
@@ -51,12 +81,12 @@ class NotesIndex extends React.Component {
     }
 
     // notes = notes.sort((note) => Date.parse(note.updated_at));
-    debugger
     notes = quickSort(notes);
     notes = notes.reverse();
     return(
       <div className='notes-wrapper'>
-        <LeftNavBar/>
+        <NotebooksModal modalOpen={this.state.modalOpen} closeModal={this.closeModal}/>
+        <LeftNavBar openModal={this.openModal}/>
         <ul className='user-notes'>
             <li className='fixed-first-note'>
               <p>NOTES</p>
@@ -72,7 +102,7 @@ class NotesIndex extends React.Component {
         </ul>
         <NoteForm
           notes={notes}
-          note={this.props.notes[this.state.selectedNote] || notes[0] || this.props.newNote}
+          note={this.props.notes[this.state.selectedNote] || notes[0] || {title: 'Title your note', body: 'just start typing...', notebook_id: null }}
           submit={this.props.editNote}
           button={null}
          />
@@ -82,17 +112,5 @@ class NotesIndex extends React.Component {
 }
 
 
-const mapStateToProps = (state, passedProps) => {
-  return {
-    notes: passedProps.notes,
-    selectedNote: passedProps.note,
-    newNote: {title: 'Title your note', body: 'just start typing...', notebook_id: null }
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  fetchNotes: () => dispatch(fetchNotes()),
-  editNote: note => dispatch(editNote(note)),
-});
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NotesIndex));
+export default withRouter(NotesIndex);
+// export default NotesIndex;

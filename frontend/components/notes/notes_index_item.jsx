@@ -63,23 +63,24 @@ class NotesIndexItem extends React.Component{
 
   render(){
     return (
-      <div
-        className='note-list-item'>
+      <div className='note-list-item'>
         <div className='title-and-delete'>
           <p className='note-title'>{this.props.note.title}</p>
-            <img className="trash" onClick={this.handleClick} src={window.images.trash} />
+          <img className="trash" onClick={this.handleClick} src={window.images.trash} />
         </div>
-        <p className='updated_at'>last updated: {this.convertTime()}</p>
+        <p className='updated-at'>last updated: {this.convertTime()}</p>
         <p className='note-body'>{this.handleBodyLength()}</p>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+  return {
   note: ownProps.note,
   selected: ownProps.selected,
-});
+};
+};
 
 const mapDispatchToProps = dispatch => ({
   deleteNote: (id) => dispatch(deleteNote(id))

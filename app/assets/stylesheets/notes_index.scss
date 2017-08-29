@@ -28,6 +28,10 @@
   color: white;
 }
 
+.note-list-item:hover .updated-at {
+  color: white;
+}
+
 .note-list-item:hover .note-title {
    color: white;
 }
@@ -38,7 +42,7 @@
   width: 350px;
 }
 
-.updated_at {
+.updated-at {
   font-size: 12px;
   font-weight: 100;
   text-transform: uppercase;
