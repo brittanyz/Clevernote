@@ -5,15 +5,18 @@ import NotesIndex from '../notes/notes_index';
 
 const mapStateToProps = (state, passedProps) => {
 //this will change
-  const noteIds = state.notebooks[passedProps.match.params.notebookId].note_ids;
-  let notes = [];
-  noteIds.forEach( (id) =>
-    notes.push(state.notes[id])
-  );
+  let noteIds = [];
+  if (state.notebooks[passedProps.match.params.notebookId] && state.notebooks[passedProps.match.params.notebookId].note_ids){
+    noteIds = state.notebooks[passedProps.match.params.notebookId].note_ids;
+  }
+  let notes = {};
+  noteIds.forEach( (id) => {
+    notes[id] = (state.notes[id]);
+}  );
     return {
     type: "notebook",
     notes: notes,
-    noteCount: notes.length,
+    noteCount: Object.keys(notes).length,
     selectedNoteId: null,
     selectedNotebook: state.notebooks[passedProps.match.params.notebookId]
   };

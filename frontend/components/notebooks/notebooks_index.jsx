@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import NotebookIndexItem from './notebooks_index_item';
+import { Link } from 'react-router-dom';
 
 class Notebooks extends React.Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class Notebooks extends React.Component {
           <ul className='notebooks-list'>
             <li className='fixed-first-notebook'>
               <p>NOTEBOOKS</p>
-              <p className='add-notebook'>+</p>
+              <Link to='/notebooks/new' className='add-notebook'>+</Link>
             </li>
             {notebooks.map ( (notebook) => <button
                                               key={notebook.id}>

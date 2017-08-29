@@ -12,18 +12,13 @@ class NotebookIndexItem extends React.Component{
   }
 
   render() {
-    const notesObj = this.props.notebook.notes;
-    let notes = [];
-    for(let note in notesObj){
-      notes.push(notesObj[note]);
-    }
     return(
       <li className='notebook-list-item' >
         <Link onClick={this.props.closeModal}
           to={`/notebooks/${this.props.notebook.id}`}>
           <p className='notebook-title'>{this.props.notebook.title}</p>
           <p className='notebook-notecount'>
-            {notes.length} notes</p>
+            {this.props.notebook.noteCount} notes</p>
         </Link>
       </li>
     );

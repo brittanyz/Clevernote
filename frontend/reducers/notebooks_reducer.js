@@ -17,7 +17,6 @@ export default (state = initialState, action) => {
       let notebooks = action.notebooks;
       return merge ({}, state, notebooks);
     case RECEIVE_NOTEBOOK:
-      debugger
       let notebook = action.notebook;
       return merge ({}, state, {[notebook.id]: notebook});
     case REMOVE_NOTEBOOK:
