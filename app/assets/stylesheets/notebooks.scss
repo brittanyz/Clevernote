@@ -1,0 +1,45 @@
+.notebook-modal {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.notebook-list-item, .notebooks-list {
+  list-style: none;
+}
+
+.notebooks-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.notebook-list-item, .fixed-first-notebook {
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 52px;
+  border-bottom: 1px solid #e6e6e6;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  color: #484848;
+}
+
+.notebook-list-item:hover {
+  background-color: #00cc00;
+  color: white;
+}
+
+.notebook-list-item:hover .notebook-notecount {
+  color: white;
+}
+
+.fixed-first-notebook {
+  height: 100px;
+  font-size: 24px;
+}
+
+.notebook-notecount {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  padding-top: 8px;
+  color: #808080;
+}

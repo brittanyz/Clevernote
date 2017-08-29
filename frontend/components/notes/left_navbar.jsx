@@ -7,7 +7,10 @@ import { withRouter } from 'react-router-dom';
 class LeftNavBar extends React.Component {
   constructor(props){
     super(props);
+
+    // debugger
     this.handleClick = this.handleClick.bind(this);
+    this.handleNew = this.handleNew.bind(this);
   }
 
   handleClick(e) {
@@ -15,16 +18,29 @@ class LeftNavBar extends React.Component {
     this.props.logout();
   }
 
-  //
-  // handleNew() {
-  //   this.setState(Object.assign( {}, this.state));
-  // }
+  handleNew(e){
+    e.preventDefault();
+
+    this.setState({
+      selectedNotebookId: this.props.match.params.notebookId
+    });
+  }
 
   render() {
+    let link;
+    if (!this.props.match.params.notebookId) {
+      link = '/new';
+    } else {
+      link = `${this.props.match.params.notebookId}/new`;
+    }
     return (
       <div className='left-navbar'>
-        <Link to={"/new"} className='new' onClick={this.handleToggle}>+</Link>
-        <button onClick={this.handleClick} className='logout'>Logout</button>
+        <Link to={link}
+          className='new'>+</Link>
+        <Link to='/'
+          className='all-notes'>notes</Link>
+        <button onClick={this.props.openModal} className='notebooks'>nb</button>
+        <button onClick={this.handleClick} className='logout'>⏏</button>
       </div>
     );
   }
@@ -35,5 +51,6 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
 });
 
+// onClick={this.handleNew}
 
 export default withRouter(connect(null, mapDispatchToProps)(LeftNavBar));

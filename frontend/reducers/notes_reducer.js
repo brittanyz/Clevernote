@@ -25,6 +25,6 @@ export default (state = initialState, action) => {
       let errors = action.errors.responseJSON;
       return merge({}, state, { errors });
     default:
-      return initialState;
+      return state;
   }
 };

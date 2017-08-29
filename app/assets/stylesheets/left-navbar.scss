@@ -9,7 +9,7 @@
   justify-content: space-between;
 }
 
-.new, .logout {
+.new, .logout, .notebooks, .all-notes {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@
 	height: 32px;
   border-radius: 30px;
   background-color: white;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   padding-left: 4px;
   padding-right: 4px;
 }
@@ -37,9 +37,13 @@
 .new {
   font-size: 40px;
 }
+.notebooks{
+  font-size: 22px;
+}
 
 .logout {
-  font-size: 12px;
-
+  font-size: 25px;
+  padding-bottom: 4px;
+  padding-top: 2px;
   // align-items: baseline;
 }
