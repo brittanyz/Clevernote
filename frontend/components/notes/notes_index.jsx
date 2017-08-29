@@ -42,10 +42,21 @@ class NotesIndex extends React.Component {
   // }
 
   componentDidMount () {
-    debugger
-    this.props.fetchNotes().then( () => {
-      this.setState({selectedNote: Object.keys(this.props.notes).reverse[0]});
-    });
+    if (this.props.type === "notebook") {
+      this.props.fetchNotebook(this.props.match.params.notebookId);
+    } else {
+      this.props.fetchNotes().then( () => {
+        this.setState({selectedNote: Object.keys(this.props.notes).reverse[0]});
+      });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.type === "notebook") {
+      if (this.props.match.params.notebookId !== nextProps.match.params.notebookId) {
+        this.props.fetchNotebook(nextProps.match.params.notebookId);
+      }
+    }
   }
 
   handleClick(id) {
@@ -74,6 +85,19 @@ class NotesIndex extends React.Component {
   // }
 
   render() {
+    let notebookHeader;
+    if (this.props.type === 'notebook' && this.props.selectedNotebook) {
+      notebookHeader = <li className='fixed-first-note-w-nb'>
+                        <p>{this.props.selectedNotebook.title}</p>
+                        <p className="note-count">{this.props.noteCount} notes</p>
+                      </li>;
+    } else {
+      notebookHeader = <li className='fixed-first-note'>
+                        <p>NOTES</p>
+                        <p className="note-count">{this.props.noteCount} notes</p>
+                      </li>;
+    }
+
     const notesObj = this.props.notes;
     let notes = [];
     for(let note in notesObj){
@@ -88,10 +112,7 @@ class NotesIndex extends React.Component {
         <NotebooksModal modalOpen={this.state.modalOpen} closeModal={this.closeModal}/>
         <LeftNavBar openModal={this.openModal}/>
         <ul className='user-notes'>
-            <li className='fixed-first-note'>
-              <p>NOTES</p>
-              <p className="note-count">{this.props.noteCount}</p>
-            </li>
+            {notebookHeader}
             {notes.map ( (note) => <button
                                         onClick={this.handleClick(note.id)}
                                         key={note.id}

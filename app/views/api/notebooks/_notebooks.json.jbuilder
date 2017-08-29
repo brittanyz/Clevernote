@@ -1,7 +1,7 @@
-# json.notebook do
+json.notebook do
 
   json.extract!(notebook, :id, :title, :author_id, :note_ids)
-# end
+end
 
 json.notes do
   notebook.notes.each do |note|

@@ -10,9 +10,10 @@ export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
-export const receiveNotebook = (notebook) => ({
+export const receiveNotebook = ({notebook, notes}) => ({
   type: RECEIVE_NOTEBOOK,
   notebook,
+  notes,
   errors: [],
 });
 
