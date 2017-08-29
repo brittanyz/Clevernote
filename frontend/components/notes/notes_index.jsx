@@ -51,11 +51,9 @@ class NotesIndex extends React.Component {
     }
 
     // notes = notes.sort((note) => Date.parse(note.updated_at));
-    //
+    debugger
     notes = quickSort(notes);
-    //
     notes = notes.reverse();
-    //
     return(
       <div className='notes-wrapper'>
         <LeftNavBar/>

@@ -12,6 +12,20 @@ const initialState = {};
 export default (state = initialState, action) => {
   Object.freeze(state);
   switch(action.type) {
-    
+    case RECEIVE_NOTEBOOKS:
+      let notebooks = action.notebooks;
+      return merge ({}, state, notebooks);
+    case RECEIVE_NOTEBOOK:
+      let notebook = action.notebooks;
+      return merge ({}, state, {[action.notebook.id]: notebook});
+    case REMOVE_NOTEBOOK:
+      let newState = merge({}, state);
+      delete newState[action.notebook.id];
+      return newState;
+    case RECEIVE_ERRORS:
+      let errors = action.errors.responseJSON;
+      return merge({}, state, { errors });
+    default:
+      return initialState;
   }
-}
+};
