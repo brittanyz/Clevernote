@@ -35,7 +35,6 @@ class NoteForm extends React.Component {
   }
 
   handleBody(e){
-
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
@@ -69,14 +68,12 @@ class NoteForm extends React.Component {
     if (typeof e !== 'undefined') {
       e.preventDefault();
     }
-
-    if (this.props.location.pathname === '/new') {
+    if (this.props.location.pathname === '/new' || this.props.location.pathname === '/') {
 
       this.setState({notebook_id: this.props.notebookId}, () => this.props.submit(this.state).then(() => {
           this.props.history.push('/');
       }));
     } else {
-
       this.setState({notebook_id: this.props.match.params.notebookId}, () => this.props.submit(this.state).then(() => {
         this.props.history.push(`/notebooks/${this.props.match.params.notebookId}`);
       }));
