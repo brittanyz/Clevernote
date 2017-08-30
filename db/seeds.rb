@@ -8,3 +8,8 @@
 
 # User.destroy_all
 Note.destroy_all
+User.destroy_all
+Notebook.destroy_all
+
+brittany = User.create!({username: "brittany", password: "brittany"})
+note = Note.create!({title: "first note", body: "here is my note", notebook_id: brittany.default_notebook_id})

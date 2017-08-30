@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: notebooks
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  title      :string
+#  author_id  :integer
+#
+
 class Notebook < ApplicationRecord
   validates :title, :author_id, presence: true
   validates :title, uniqueness: { scope: :author_id }

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                  :integer          not null, primary key
+#  username            :string           not null
+#  session_token       :string           not null
+#  password_digest     :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  default_notebook_id :integer
+#
+
 class User < ApplicationRecord
   validates :username, :password_digest, :session_token, presence: true
   validates :username, uniqueness: true
@@ -25,6 +38,11 @@ class User < ApplicationRecord
   has_many :notes,
     through: :notebooks,
     source: :notes
+
+  has_many :tags,
+    foreign_key: :user_id,
+    class_name: :Tag
+
 
   attr_reader :password
 

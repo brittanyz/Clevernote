@@ -7,7 +7,6 @@ import NoteForm from './note_form';
 class NewNote extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -30,7 +29,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
   newNote: {title: '', body: ''},
   notebookId: state.session.currentUser.notebookId,
-}
+};
 };
 
 const mapDispatchToProps = dispatch => ({

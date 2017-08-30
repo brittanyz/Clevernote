@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
   switch(action.type) {
     case RECEIVE_NOTES:
       let notes = action.notes;
-      return merge ({}, state, notes);
+      return merge ({}, notes);
     case RECEIVE_NOTE:
       let note = action.note;
       return merge ({}, state, {[note.id]: note});

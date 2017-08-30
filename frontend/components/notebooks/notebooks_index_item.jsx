@@ -8,7 +8,6 @@ import { withRouter, Link } from 'react-router-dom';
 class NotebookIndexItem extends React.Component{
   constructor(props) {
     super(props);
-    // debugger
   }
 
   render() {
@@ -28,7 +27,6 @@ class NotebookIndexItem extends React.Component{
 // export default NotebookIndexItem;
 
 const mapStateToProps = (state, passedProps) => {
-  // debugger
   return {
     notebook: passedProps.notebook,
     selectedId: passedProps.selected,

@@ -15,6 +15,11 @@ class LeftNavBar extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
+    // debugger;
+    // this.setState({
+    //   notebooks: {},
+    //   notes: {},
+    // });
     this.props.logout();
   }
 
