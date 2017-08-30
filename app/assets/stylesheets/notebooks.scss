@@ -13,6 +13,12 @@
   flex-direction: column;
 }
 
+.notebook-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: 18px;
+}
+
 .notebook-list-item, .fixed-first-notebook {
   padding-top: 10px;
   padding-left: 10px;
@@ -42,4 +48,6 @@
   font-size: 13px;
   padding-top: 8px;
   color: #808080;
+  // padding-left: 10px;
+
 }
