@@ -34,13 +34,14 @@ class NewNotebookForm extends React.Component {
     return (
       <div className='new-notebook'>
         <form className='new-notebook-form' onSubmit={this.handleSubmit}>
+          <img className="nb-elephant" src={window.images.logo} />
           <input
-            className='title'
+            className='nb-title'
             type='text'
-            value={this.state.title}
-            placeholder="Title your notebook"
-            onChange={this.handleTitle} />
-          <input type='submit' value='submit' />
+            placeholder="Title your notebook..."
+            onChange={this.handleTitle}
+            OnLoad="document.new-notebook-form.nb-title.focus();" />
+          <input className='nb-submit' type='submit' value='submit' />
         </form>
       </div>
     );
@@ -59,3 +60,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewNotebookForm));
+
+
+
+
+
+
+// value={this.state.title}

@@ -97,12 +97,12 @@
 .trash {
   width: 16px;
   height: 19px;
-  -webkit-filter: opacity(70%);
-  filter: opacity(70%);
+  padding-right: 10px;
+  -webkit-filter: opacity(65%);
+  filter: opacity(65%);
   cursor: pointer;
 }
 //
-.note-count {
-  padding-top: 55px;
-  font-size: 16px;
-}
+// .fixed-first-note .note-count {
+//   align-self: baseline;
+// }
