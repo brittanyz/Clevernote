@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class Notebooks extends React.Component {
   constructor(props) {
     super(props);
-    // debugger
+
     this.customStyles = {
       content : {
         top: '0',
@@ -51,7 +51,6 @@ class Notebooks extends React.Component {
   }
 
   render() {
-    // debugger
     let notebooks = [];
     for(let notebook in this.props.notebooks){
       notebooks.push(this.props.notebooks[notebook]);

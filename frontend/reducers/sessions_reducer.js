@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, CLEAR_ERRORS } from '../actions/sessions_actions';
+import { RECEIVE_CURRENT_USER, RECEIVE_ERRORS, CLEAR_STORE, CLEAR_ERRORS } from '../actions/sessions_actions';
 import { merge } from 'lodash';
 
 const initialState = {
@@ -20,3 +20,8 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+
+
+// case CLEAR_STORE:
+//   return null;

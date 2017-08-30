@@ -11,11 +11,10 @@ const initialState = {};
 
 export default (state = initialState, action) => {
   Object.freeze(state);
-  // debugger
   switch(action.type) {
     case RECEIVE_NOTEBOOKS:
       let notebooks = action.notebooks;
-      return merge ({}, state, notebooks);
+      return merge ({}, notebooks);
     case RECEIVE_NOTEBOOK:
       let notebook = action.notebook;
       return merge ({}, state, {[notebook.id]: notebook});

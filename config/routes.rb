@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resources :notes
     resources :notebooks
+    resources :tags
   end
 end
