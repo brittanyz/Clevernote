@@ -40,7 +40,10 @@ class NoteForm extends React.Component {
     }
     if (this.props.location.pathname === '/') {
       this.timeoutId = setTimeout(this.handleSubmit, 2000);
-    }
+    } else if (this.props.match.params.notebookId &&
+      this.props.location.pathname === `/notebooks/${this.props.match.params.notebookId}`) {
+        this.timeoutId = setTimeout(this.handleSubmit, 2000);
+      }
 
     // this is new
     // let param;
