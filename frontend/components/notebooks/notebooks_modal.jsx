@@ -8,7 +8,7 @@ import { fetchNotebook,
         deleteNotebook} from '../../actions/notebooks_actions';
 
 const mapStateToProps = (state) => {
-  // debugger
+  // 
   return {
   notebooks: state.notebooks,
   currentUser: state.session.current_user,

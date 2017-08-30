@@ -36,6 +36,7 @@ class Api::TagsController < ApplicationController
   def destroy
     @tag = current_user.tags.find_by(tag_name: params[:tag_name])
     @tag.destroy
+    render :show
   end
 
   private
