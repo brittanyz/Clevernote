@@ -39,8 +39,7 @@ class NewNotebookForm extends React.Component {
             className='nb-title'
             type='text'
             placeholder="Title your notebook..."
-            onChange={this.handleTitle}
-            OnLoad="document.new-notebook-form.nb-title.focus();" />
+            onChange={this.handleTitle}/>
           <input className='nb-submit' type='submit' value='submit' />
         </form>
       </div>
