@@ -4,10 +4,12 @@ import LogInPage from './sessions/login_page';
 import NewNotePage from './notes/new_note';
 import { AuthRoute, ProtectedRoute } from '../util/route_util.jsx';
 import NotesIndexContainer from './notes/notes_index_container';
+import TagsIndexContainer from './tags/tags_index_container';
 import NotebooksIndexContainer from './notebooks/notebooks_index_container';
 import { Route, Switch } from 'react-router-dom';
 import HeaderContainer from './sessions/header_container';
 import NewNotebookForm from './notebooks/new_notebook_form';
+import NewTagForm from './tags/new_tag_form';
 
 
 const App = () => {
@@ -19,8 +21,10 @@ const App = () => {
         <AuthRoute path="/login" component={LogInPage} />
         <Route path="/new" exact component={NewNotePage} />
         <Route path="/notebooks/new" exact component={NewNotebookForm} />
+        <Route path="/tags/new" exact component={NewTagForm} />
         <Route path="/notebooks/:notebookId/new" exact component={NewNotePage} />
         <Route path='/notebooks/:notebookId' component={NotebooksIndexContainer} />
+        <Route path='/tags/:tagId' component={TagsIndexContainer} />
       </Switch>
     </div>
   );

@@ -8,18 +8,12 @@ class LeftNavBar extends React.Component {
   constructor(props){
     super(props);
 
-    // debugger
     this.handleClick = this.handleClick.bind(this);
     this.handleNew = this.handleNew.bind(this);
   }
 
   handleClick(e) {
     e.preventDefault();
-    // debugger;
-    // this.setState({
-    //   notebooks: {},
-    //   notes: {},
-    // });
     this.props.logout();
   }
 
@@ -44,7 +38,8 @@ class LeftNavBar extends React.Component {
           className='new'>+</Link>
         <Link to='/'
           className='all-notes'>notes</Link>
-        <button onClick={this.props.openModal} className='notebooks'>nb</button>
+        <button onClick={this.props.openModal('notebookModalOpen')} className='notebooks'>nb</button>
+        <button onClick={this.props.openModal('tagModalOpen')} className='tags'>tags</button>
         <button onClick={this.handleClick} className='logout'>⏏</button>
       </div>
     );

@@ -1,5 +1,5 @@
 const quickSort = (arr) => {
-  if (arr.length < 1 ) return arr;
+  if (arr.length <= 1 ) return arr;
   let pivot = arr[0];
   arr = arr.slice(1);
 

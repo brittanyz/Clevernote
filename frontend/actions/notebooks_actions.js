@@ -34,7 +34,6 @@ export const createNotebook = (notebookData) => dispatch => {
     notebook => dispatch(receiveNotebook(notebook)),
     errors => dispatch(receiveErrors(errors)));
 };
-// );
 
 export const deleteNotebook = (notebookId) => dispatch => (
   APIUtil.deleteNotebook(notebookId).then(

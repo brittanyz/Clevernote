@@ -70,7 +70,6 @@ class NoteForm extends React.Component {
       e.preventDefault();
     }
 
-
     if (this.props.location.pathname === '/new') {
 
       this.setState({notebook_id: this.props.notebookId}, () => this.props.submit(this.state).then(() => {

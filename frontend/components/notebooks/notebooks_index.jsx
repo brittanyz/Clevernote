@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class Notebooks extends React.Component {
   constructor(props) {
     super(props);
-
+    //
     this.customStyles = {
       content : {
         top: '0',
@@ -32,7 +32,7 @@ class Notebooks extends React.Component {
   }
 
   // handleClick(id) {
-  //   // debugger
+  //   //
   //   return (e) => {
   //     this.setState({
   //       selectedNotebook: id

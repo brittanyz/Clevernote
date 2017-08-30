@@ -7,6 +7,7 @@ import LeftNavBar from './left_navbar';
 import { withRouter } from 'react-router-dom';
 import quickSort from './quick_sort';
 import NotebooksModal from '../notebooks/notebooks_modal';
+import TagsModal from '../tags/tags_modal';
 
 class NotesIndex extends React.Component {
   constructor(props) {
@@ -17,29 +18,12 @@ class NotesIndex extends React.Component {
     this.state = {
       selectedNotebook: notebook,
       selectedNote: null,
-      modalOpen: false,
+      notebookModalOpen: false,
+      tagModalOpen: false,
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
-
-  // componentDidMount() {
-  //   if (this.props.)
-  //   this.props.fetchNotes();
-  // }
-  //
-  // componentWillMount () {
-  //   // debugger
-  //   if (this.props.selectedNotebook) {
-  //     this.setState({
-  //       notes: this.props.selectedNotebook.notes
-  //     });
-  //   } else {
-  //     this.setState({
-  //       notes: this.props.fetchNotes(),
-  //     });
-  //   }
-  // }
 
   componentDidMount () {
     if (this.props.type === "notebook") {
@@ -67,22 +51,22 @@ class NotesIndex extends React.Component {
     };
   }
 
-  openModal() {
-    this.setState({
-      modalOpen: true,
-    });
+  openModal(type) {
+    return (e) => {
+      this.setState({
+        [type]: true,
+      });
+    };
   }
 
-  closeModal() {
-    this.setState({
-      modalOpen: false,
-    });
-  }
 
-  // componentWillReceiveProps(nextProps) {
-  //   // this.setState({selectedNotebookId: nextProps.selectedNotebook.id});
-  //   this.setState({selectedNote: Object.keys(nextProps.notes).reverse[0]});
-  // }
+  closeModal(type) {
+    return (e) => {
+      this.setState({
+        [type]: false,
+      });
+    };
+  }
 
   render() {
     let notebookHeader;
@@ -109,17 +93,18 @@ class NotesIndex extends React.Component {
     notes = notes.reverse();
     return(
       <div className='notes-wrapper'>
-        <NotebooksModal modalOpen={this.state.modalOpen} closeModal={this.closeModal}/>
+        <NotebooksModal modalOpen={this.state.notebookModalOpen} closeModal={this.closeModal('notebookModalOpen')}/>
+        <TagsModal modalOpen={this.state.tagModalOpen} closeModal={this.closeModal('tagModalOpen')} />
         <LeftNavBar openModal={this.openModal}/>
         <ul className='user-notes'>
             {notebookHeader}
             {notes.map ( (note) => <button
-                                        onClick={this.handleClick(note.id)}
-                                        key={note.id}
-                                        value={note.id}>
-                                            <NotesIndexItem
-                                            note={note} />
-                                        </button> )}
+                                      onClick={this.handleClick(note.id)}
+                                      key={note.id}
+                                      value={note.id}>
+                                        <NotesIndexItem
+                                        note={note} />
+                                    </button> )}
         </ul>
         <NoteForm
           notes={notes}
