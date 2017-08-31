@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchTags, fetchTag } from '../../actions/tags_actions';
-import { fetchNotes, editNote, createNote } from '../../actions/notes_actions';
+import { fetchNotes, editNote, createNote, addTagToNote } from '../../actions/notes_actions';
 import NotesIndex from '../notes/notes_index';
 
 const mapStateToProps = (state, passedProps) => {
@@ -10,23 +10,24 @@ const mapStateToProps = (state, passedProps) => {
   if (state.tags[passedProps.match.params.tagId] && state.tags[passedProps.match.params.tagId].note_ids){
     noteIds = state.tags[passedProps.match.params.tagId].note_ids;
   }
-  let notes = {};
+  let notes = [];
   noteIds.forEach( (id) => {
-    notes[id] = (state.notes[id]);
+    notes.push(state.notes[id]);
 }  );
     return {
     // tag: passedProps.tag,
     tags: state.tags,
     type: "tag",
     notes: notes,
-    noteCount: Object.keys(notes).length,
+    noteCount: notes.length,
     // selectedTag: passedProps.tag.id
-    // selectedTag: state.tags[passedProps.match.params.tagId]
+    selectedTag: state.tags[passedProps.match.params.tagId]
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    addTagToNote: (id) => dispatch(addTagToNote(id)),
     fetchTag: (id) => dispatch(fetchTag(id)),
     fetchTags: () => dispatch(fetchTags()),
     fetchNotes: () => dispatch(fetchNotes()),

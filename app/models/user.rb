@@ -39,9 +39,10 @@ class User < ApplicationRecord
     through: :notebooks,
     source: :notes
 
-  has_many :tags,
-    foreign_key: :user_id,
-    class_name: :Tag
+    has_many :taggings
+
+    has_many :tags
+
 
 
   attr_reader :password

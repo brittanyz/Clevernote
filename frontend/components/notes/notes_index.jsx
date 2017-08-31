@@ -24,6 +24,7 @@ class NotesIndex extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.toggleClassName = this.toggleClassName.bind(this);
   }
 
   componentDidMount () {
@@ -39,6 +40,12 @@ class NotesIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (!this.state.selectedNote && nextProps.notes.length) {
+      const sortedNotes = quickSort(nextProps.notes).reverse();
+      this.setState({
+        selectedNote: sortedNotes[0]
+      });
+    }
     if (this.props.type === "notebook") {
       if (this.props.match.params.notebookId !== nextProps.match.params.notebookId) {
         this.props.fetchNotebook(nextProps.match.params.notebookId);
@@ -54,14 +61,16 @@ class NotesIndex extends React.Component {
     };
   }
 
-  addTagToNote(id) {
-    // debugger
-  }
-
   handleTagClick(id) {
     return (e) => {
+      debugger
+
       this.props.addTagToNote(this.state.selectedNote.id, id);
     };
+  }
+
+  toggleClassName() {
+    // debugger
   }
 
   openModal(type) {
@@ -82,13 +91,11 @@ class NotesIndex extends React.Component {
   }
 
   render() {
-    // debugger
-    let notesObj = this.props.notes;
-
-    let notes = [];
-    for(let note in notesObj){
-      notes.push(notesObj[note]);
-    }
+    // let notesObj = this.props.notes;
+    let notes = this.props.notes;
+    // for(let note in notesObj){
+    //   notes.push(notesObj[note]);
+    // }
 
     let tags = [];
     for(let tag in this.props.tags){
@@ -116,7 +123,6 @@ class NotesIndex extends React.Component {
                         <p className="note-count">{this.props.noteCount} notes</p>
                       </li>;
     }
-    // debugger
     return(
       <div className='notes-wrapper'>
         <NotebooksModal modalOpen={this.state.notebookModalOpen} closeModal={this.closeModal('notebookModalOpen')}/>
@@ -137,9 +143,9 @@ class NotesIndex extends React.Component {
                                   </button> )}
         </ul>
         <div className='noteform-with-tags'>
-          <ul className= 'user-tags'>
+          <ul className= 'all-tags'>
             {tags.map ( (tag) => <button
-                                    className="tag-buttons"
+                                    className='tag-names'
                                     onClick={this.handleTagClick(tag.id)}
                                     key={tag.id}
                                     value={tag.id}>
@@ -149,7 +155,7 @@ class NotesIndex extends React.Component {
 
           <NoteForm
             notes={notes}
-            note={this.state.selectedNote || notes[0] || {title: 'Title your note', body: 'just start typing...', notebook_id: 1 }}
+            note={this.state.selectedNote || {title: 'Title your note', body: 'just start typing...'}}
             submit={this.props.editNote}
             button={null}
             />

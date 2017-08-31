@@ -25,7 +25,8 @@ class Api::NotesController < ApplicationController
 
   def add_tag
     Tagging.create(note_id: params[:id], tag_id: params[:tagId])
-    # render :show
+    @note = Note.find(params[:id])
+    render :show
   end
 
   def update

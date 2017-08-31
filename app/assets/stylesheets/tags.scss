@@ -1,3 +1,26 @@
 // Place all the styles related to the tags controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.all-tags {
+  height: 60px;
+  display: flex;
+  padding-left: 20px;
+  align-items: center;
+}
+
+.tag-names {
+  padding-left: 2px;
+  padding-right: 2px;
+  height: 28px;
+  border: 1px solid darkgray;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.tag-names .tags-selected {
+  background-color: #f2f2f2
+}
+
+.tag-names .tags-unselected {
+  background-color: #00cc00;
+}

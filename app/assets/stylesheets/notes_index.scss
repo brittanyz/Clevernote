@@ -77,7 +77,7 @@
   color: white;
 }
 
-.fixed-first-note, .fixed-first-note-w-nb{
+.fixed-first-note, .fixed-first-note-w-nb, .fixed-first-note-w-tag {
   border-bottom: 1px solid #e6e6e6;
   justify-content: space-between;
   height: 120px;
@@ -89,7 +89,7 @@
   font-size: 24px;
 }
 
-.fixed-first-note-w-nb {
+.fixed-first-note-w-nb, .fixed-first-note-w-tag {
   background-color: #454343;
   color: white;
 }

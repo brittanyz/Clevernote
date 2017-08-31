@@ -2,11 +2,12 @@ import { connect } from 'react-redux';
 import { fetchNotes, fetchNote, editNote, addTagToNote } from '../../actions/notes_actions';
 import { fetchTags } from '../../actions/tags_actions';
 import NotesIndex from './notes_index';
+import { values } from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     type: "note",
-    notes: state.notes,
+    notes: values(state.notes),
     noteCount: Object.keys(state.notes).length,
     selectedNoteId: null,
     tags: state.tags

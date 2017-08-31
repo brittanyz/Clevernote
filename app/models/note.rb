@@ -22,7 +22,10 @@ class Note < ApplicationRecord
     through: :notebook,
     source: :author
 
+  has_many :taggings
+
   has_many :tags,
-    through: :author,
-    source: :tags
+  through: :taggings,
+  source: :tag
+
 end
