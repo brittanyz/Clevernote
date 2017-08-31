@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchNotes, fetchNote, editNote } from '../../actions/notes_actions';
+import { fetchTags } from '../../actions/tags_actions';
 import NotesIndex from './notes_index';
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchTags: () => dispatch(fetchTags()),
     fetchNote: (id) => dispatch(fetchNote(id)),
     fetchNotes: () => dispatch(fetchNotes()),
     editNote: note => dispatch(editNote(note))

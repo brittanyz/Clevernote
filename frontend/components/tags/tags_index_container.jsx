@@ -5,21 +5,20 @@ import NotesIndex from '../notes/notes_index';
 
 const mapStateToProps = (state, passedProps) => {
 //this will change
-// 
-  let tagIds = [];
+  let noteIds = [];
   if (state.tags[passedProps.match.params.tagId] && state.tags[passedProps.match.params.tagId].note_ids){
-    noteIds = state.tags[passedProps.match.params.notebookId].note_ids;
+    noteIds = state.tags[passedProps.match.params.tagId].note_ids;
   }
-  let tags = {};
-  tagIds.forEach( (id) => {
-    tags[id] = (state.tags[id]);
+  let notes = {};
+  noteIds.forEach( (id) => {
+    notes[id] = (state.notes[id]);
 }  );
     return {
+    tags: state.tags,
     type: "tag",
-    notes: tags,
-    noteCount: Object.keys(tags).length,
-    selectedNoteId: null,
-    selectedNote: state.tags[passedProps.match.params.noteId]
+    notes: notes,
+    noteCount: Object.keys(notes).length,
+    selectedTag: state.tags[passedProps.match.params.tagId]
   };
 };
 

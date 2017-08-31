@@ -35,6 +35,8 @@ class NoteForm extends React.Component {
   }
 
   handleBody(e){
+    // debugger
+
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
@@ -67,7 +69,7 @@ class NoteForm extends React.Component {
     }
   }
 
-  handleSubmit(e) {
+  handleSubmit(e) { 
     if (typeof e !== 'undefined') {
       e.preventDefault();
     }
@@ -84,12 +86,13 @@ class NoteForm extends React.Component {
   }
 
   render() {
-    // let submit;
-    // const notesObj = this.props.notes;
-    // let noteIds = [];
-    // for(let note in notesObj){
-    //   noteIds.push(note);
-    // }
+    // fix this later... still rendering with a placeholder
+    let placeholderTitle = "Title your note";
+    let placeholderBody = "just start typing.....";
+    if (this.props.location.pathname.includes("tags")) {
+      placeholderTitle = '';
+      placeholderBody = '';
+    }
 
 
     return (
@@ -100,11 +103,11 @@ class NoteForm extends React.Component {
             className='title'
             type='text'
             value={this.state.title}
-            placeholder="Title your note"
+            placeholder={placeholderTitle}
             onChange={this.handleTitle} />
           <br></br>
           <textarea
-            placeholder="just start typing....."
+            placeholder={placeholderBody}
             type='text'
             className='edit-body'
             onChange={this.handleBody}
