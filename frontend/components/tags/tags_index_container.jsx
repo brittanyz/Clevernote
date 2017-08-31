@@ -5,6 +5,7 @@ import NotesIndex from '../notes/notes_index';
 
 const mapStateToProps = (state, passedProps) => {
 //this will change
+  // debugger
   let noteIds = [];
   if (state.tags[passedProps.match.params.tagId] && state.tags[passedProps.match.params.tagId].note_ids){
     noteIds = state.tags[passedProps.match.params.tagId].note_ids;
@@ -14,11 +15,13 @@ const mapStateToProps = (state, passedProps) => {
     notes[id] = (state.notes[id]);
 }  );
     return {
+    // tag: passedProps.tag,
     tags: state.tags,
     type: "tag",
     notes: notes,
     noteCount: Object.keys(notes).length,
-    selectedTag: state.tags[passedProps.match.params.tagId]
+    // selectedTag: passedProps.tag.id
+    // selectedTag: state.tags[passedProps.match.params.tagId]
   };
 };
 
@@ -30,5 +33,4 @@ const mapDispatchToProps = dispatch => {
     createNote: (noteData) => dispatch(createNote(noteData)),
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(NotesIndex);

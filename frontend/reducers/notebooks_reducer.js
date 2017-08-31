@@ -4,6 +4,7 @@ import {
   REMOVE_NOTEBOOK,
   RECEIVE_ERRORS,
   CLEAR_ERRORS } from '../actions/notebooks_actions';
+import { REMOVE_NOTE } from '../actions/notes_actions';
 import { merge } from 'lodash';
 
 
@@ -14,7 +15,7 @@ export default (state = initialState, action) => {
   switch(action.type) {
     case RECEIVE_NOTEBOOKS:
       let notebooks = action.notebooks;
-      return merge ({}, notebooks);
+      return merge ({}, state, notebooks);
     case RECEIVE_NOTEBOOK:
       let notebook = action.notebook;
       return merge ({}, state, {[notebook.id]: notebook});
@@ -25,6 +26,14 @@ export default (state = initialState, action) => {
     case RECEIVE_ERRORS:
       let errors = action.errors.responseJSON;
       return merge({}, state, { errors });
+    case REMOVE_NOTE:
+      newState = merge( {}, state);
+      notebook = newState[action.notebookId];
+      if (!notebook || !notebook.note_ids) {
+        return state;
+      }
+      notebook.note_ids = notebook.note_ids.filter( (id) => id !== action.noteId );
+      return newState;
     default:
       return state;
   }

@@ -34,3 +34,11 @@ export const fetchNote = (noteId) => {
     url: `api/notes/${noteId}`,
   });
 };
+
+export const addTagToNote = (noteId, tagId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `api/notes/${noteId}/add_tag`,
+    data: {tagId},
+  });
+};

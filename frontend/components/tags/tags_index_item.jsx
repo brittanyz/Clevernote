@@ -10,6 +10,7 @@ class TagIndexItem extends React.Component {
   }
 
   render() {
+    debugger
     return (
       <li className='tag-list-item' >
         <Link onClick={this.props.closeModal}
@@ -21,15 +22,17 @@ class TagIndexItem extends React.Component {
   }
 }
 
-const mapStateToProps = (state, passedProps) => {
-  return {
-    tag: passedProps.tag,
-    selectedId: passedProps.selected,
-  };
-};
+export default TagIndexItem;
 
-const mapDispatchToProps = dispatch => ({
-  deleteNotebook: (id) => dispatch(deleteTag(id)),
-});
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TagIndexItem));
+// const mapStateToProps = (state, passedProps) => {
+//   return {
+//     tag: passedProps.tag,
+//     selectedId: passedProps.selected,
+//   };
+// };
+//
+// const mapDispatchToProps = dispatch => ({
+//   deleteNotebook: (id) => dispatch(deleteTag(id)),
+// });
+//
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TagIndexItem));

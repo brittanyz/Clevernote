@@ -36,9 +36,17 @@ class TagsModal extends React.Component {
     });
   }
 
+  handleTagClick(id) {
+    return (e) => {
+      this.setState({
+        selectedTag: id
+      });
+    };
+  }
+
   componentDidMount() {
     this.props.fetchTags();
-    
+
   }
 
   componentWillMount() {
@@ -65,8 +73,10 @@ class TagsModal extends React.Component {
               <Link to='/tags/new' className='add-tag'>+</Link>
             </li>
             {tags.map ( (tag) => <button
-                                    key={tag.id}>
+                                    key={tag.id}
+                                    onClick={this.handleTagClick(tag.id)}>
                                     <TagIndexItem
+                                      addTagToNote={false}
                                       closeTag={this.props.closeModal}
                                       tag={tag}/>
                                   </button> )}

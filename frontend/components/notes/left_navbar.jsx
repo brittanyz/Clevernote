@@ -7,7 +7,9 @@ import { withRouter } from 'react-router-dom';
 class LeftNavBar extends React.Component {
   constructor(props){
     super(props);
-
+    // this.state = {
+    //   defaultNotebookId: this.props.defaultNote.notebook_id
+    // };
     this.handleClick = this.handleClick.bind(this);
     this.handleNew = this.handleNew.bind(this);
   }

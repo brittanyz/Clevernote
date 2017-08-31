@@ -21,11 +21,19 @@ export const receiveNotes = (notes) => ({
   errors: [],
 });
 
-export const removeNote = (noteId) => ({
+export const removeNote = ({noteId, notebookId}) => ({
   type: REMOVE_NOTE,
   noteId,
+  notebookId,
   errors: [],
 });
+
+export const addTagToNote = (noteId, tagId)  => dispatch => {
+  return APIUtil.addTagToNote(noteId, tagId)
+  // .then(
+    // payload => dispatch(receiveNote(payload)),
+    // errors => dispatch(receiveErrors(errors)));
+};
 
 
 export const createNote = (noteData) => dispatch => (
@@ -42,7 +50,7 @@ export const editNote = (noteData) => dispatch => (
 
 export const deleteNote = (noteId) => dispatch => (
   APIUtil.deleteNote(noteId).then(
-    noteId => dispatch(removeNote(noteId)),
+    payload => dispatch(removeNote(payload)),
     errors => dispatch(receiveErrors(errors)))
 );
 

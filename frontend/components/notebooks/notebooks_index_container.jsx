@@ -18,7 +18,6 @@ const mapStateToProps = (state, passedProps) => {
     notes: notes,
     noteCount: Object.keys(notes).length,
     selectedNoteId: null,
-    selectedNotebook: state.notebooks[passedProps.match.params.notebookId]
   };
 };
 

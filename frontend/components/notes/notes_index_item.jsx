@@ -24,7 +24,11 @@ class NotesIndexItem extends React.Component{
 
   handleClick(e) {
     e.preventDefault();
-    this.props.deleteNote(this.props.note.id);
+    this.props.deleteNote(this.props.note.id).then(
+      () => this.setState({
+        selectedNote: null,
+      })
+    );
   }
 
   convertTime(){

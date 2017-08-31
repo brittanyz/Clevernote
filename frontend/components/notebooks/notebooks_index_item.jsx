@@ -26,15 +26,15 @@ class NotebookIndexItem extends React.Component{
 
 // export default NotebookIndexItem;
 
-const mapStateToProps = (state, passedProps) => {
-  return {
-    notebook: passedProps.notebook,
-    selectedId: passedProps.selected,
-  };
-};
+// const mapStateToProps = (state, passedProps) => {
+//   return {
+//     notebook: passedProps.notebook,
+//     selectedId: passedProps.selected,
+//   };
+// };
 
-const mapDispatchToProps = dispatch => ({
-  deleteNotebook: (id) => dispatch(deleteNotebook(id)),
-});
+// const mapDispatchToProps = dispatch => ({
+//   deleteNotebook: (id) => dispatch(deleteNotebook(id)),
+// });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NotebookIndexItem));
+export default withRouter(NotebookIndexItem);

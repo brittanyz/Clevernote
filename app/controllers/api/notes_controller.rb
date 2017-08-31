@@ -6,10 +6,14 @@ class Api::NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
-    if current_user.notebooks.exists?(id: @note.notebook_id) && @note.save
+    # if current_user.notebooks.exists?(id: @note.notebook_id) && @note.save
+    #   render :show
+    if @note.notebook_id == nil
+      @note.notebook_id = current_user.default_notebook_id
+    end
+    if @note.save
       render :show
     else
-
       @errors = @note.errors.full_messages
       render json: @errors, status: 422
     end
@@ -17,6 +21,11 @@ class Api::NotesController < ApplicationController
 
   def edit
     @note = Note.find_by(params[:id])
+  end
+
+  def add_tag
+    Tagging.create(note_id: params[:id], tag_id: params[:tagId])
+    # render :show
   end
 
   def update
@@ -40,7 +49,7 @@ class Api::NotesController < ApplicationController
   def destroy
     @note = Note.find(params[:id])
     if @note.destroy
-      render :show
+      render :delete
     else
       @errors = @note.errors.full_messages
       render json: @errors, status: 422

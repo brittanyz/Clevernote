@@ -35,8 +35,6 @@ class NoteForm extends React.Component {
   }
 
   handleBody(e){
-    // debugger
-
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
@@ -45,7 +43,10 @@ class NoteForm extends React.Component {
     } else if (this.props.match.params.notebookId &&
       this.props.location.pathname === `/notebooks/${this.props.match.params.notebookId}`) {
         this.timeoutId = setTimeout(this.handleSubmit, 2000);
-      }
+    }
+    this.setState({
+      body: e.currentTarget.value,
+    });
 
     // this is new
     // let param;
@@ -55,9 +56,9 @@ class NoteForm extends React.Component {
     // }
 
 
-    this.setState({
-      body: e.currentTarget.value,
-    });
+    // this.setState({
+    //   body: e.currentTarget.value,
+    // });
   }
 
   componentWillReceiveProps(newProps) {
@@ -69,7 +70,7 @@ class NoteForm extends React.Component {
     }
   }
 
-  handleSubmit(e) { 
+  handleSubmit(e) {
     if (typeof e !== 'undefined') {
       e.preventDefault();
     }
@@ -93,8 +94,6 @@ class NoteForm extends React.Component {
       placeholderTitle = '';
       placeholderBody = '';
     }
-
-
     return (
       <div className='edit-note-container'>
         <form className='edit-note-form' onSubmit={this.handleSubmit}>

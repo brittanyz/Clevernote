@@ -1,5 +1,6 @@
 import React from 'react';
 import NotesIndexItem from './notes_index_item';
+// import TagIndexContainer from '../tags/tags_index_container';
 import NewNote from './new_note';
 import NoteHeader from './note_header';
 import NoteForm from './note_form';
@@ -31,7 +32,8 @@ class NotesIndex extends React.Component {
     } else {
       this.props.fetchTags();
       this.props.fetchNotes().then( () => {
-        this.setState({selectedNote: Object.keys(this.props.notes).reverse[0]});
+        this.setState({
+          selectedNote: Object.keys(this.props.notes).reverse[0]});
       });
     }
   }
@@ -44,19 +46,21 @@ class NotesIndex extends React.Component {
     }
   }
 
-  handleClick(id) {
+  handleClick(note) {
     return (e) => {
       this.setState({
-        selectedNote: id
+        selectedNote: note
       });
     };
   }
 
+  addTagToNote(id) {
+    // debugger
+  }
+
   handleTagClick(id) {
     return (e) => {
-      this.setState({
-        selectedTag: id
-      });
+      this.props.addTagToNote(this.state.selectedNote.id, id);
     };
   }
 
@@ -78,12 +82,28 @@ class NotesIndex extends React.Component {
   }
 
   render() {
-    debugger
+    // debugger
+    let notesObj = this.props.notes;
+
+    let notes = [];
+    for(let note in notesObj){
+      notes.push(notesObj[note]);
+    }
+
+    let tags = [];
+    for(let tag in this.props.tags){
+      tags.push(this.props.tags[tag]);
+    }
+    // notes = notes.sort((note) => Date.parse(note.updated_at));
+    notes = quickSort(notes);
+    notes = notes.reverse();
+
+
     let header;
     if (this.props.type === 'notebook' && this.props.selectedNotebook) {
       header = <li className='fixed-first-note-w-nb'>
                         <p>{this.props.selectedNotebook.title}</p>
-                        <p className="note-count">{this.props.noteCount} notes</p>
+                        <p className="note-count">{notes.length} notes</p>
                       </li>;
     } else if (this.props.type === 'tag' && this.props.selectedTag) {
       header = <li className='fixed-first-note-w-tag'>
@@ -96,32 +116,23 @@ class NotesIndex extends React.Component {
                         <p className="note-count">{this.props.noteCount} notes</p>
                       </li>;
     }
-    let notes = [];
-    for(let note in this.props.notes){
-      notes.push(this.props.notes[note]);
-    }
-
-    let tags = [];
-    for(let tag in this.props.tags){
-      tags.push(this.props.tags[tag]);
-    }
-    // notes = notes.sort((note) => Date.parse(note.updated_at));
-    notes = quickSort(notes);
-    notes = notes.reverse();
-
+    // debugger
     return(
       <div className='notes-wrapper'>
         <NotebooksModal modalOpen={this.state.notebookModalOpen} closeModal={this.closeModal('notebookModalOpen')}/>
         <TagsModal modalOpen={this.state.tagModalOpen} closeModal={this.closeModal('tagModalOpen')} />
-        <LeftNavBar openModal={this.openModal}/>
+        <LeftNavBar
+          defaultNote={this.state.selectedNote || notes[0]}
+          openModal={this.openModal}/>
 
         <ul className='user-notes'>
           {header}
+
           {notes.map ( (note) => <button
-                                    onClick={this.handleClick(note.id)}
+                                    onClick={this.handleClick(note)}
                                     key={note.id}
                                     value={note.id}>
-                                      <NotesIndexItem
+                                    <NotesIndexItem
                                       note={note} />
                                   </button> )}
         </ul>
@@ -138,7 +149,7 @@ class NotesIndex extends React.Component {
 
           <NoteForm
             notes={notes}
-            note={this.props.notes[this.state.selectedNote] || notes[0] || {title: 'Title your note', body: 'just start typing...', notebook_id: null }}
+            note={this.state.selectedNote || notes[0] || {title: 'Title your note', body: 'just start typing...', notebook_id: 1 }}
             submit={this.props.editNote}
             button={null}
             />
@@ -154,4 +165,10 @@ class NotesIndex extends React.Component {
 export default withRouter(NotesIndex);
 
 // <TagIndexItem
+//   tag={tag} />
+
+
+
+// <TagIndexContainer
+//   addTagToNote={true}
 //   tag={tag} />
