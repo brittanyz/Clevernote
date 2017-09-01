@@ -4,7 +4,7 @@
 
 }
 
-.notebook-list-item, .notebooks-list, .tags-list, .tags-list-item {
+.notebook-list-item, .notebooks-list, .tags-list, .tag-list-item {
   list-style: none;
 }
 
@@ -19,7 +19,7 @@
   font-size: 18px;
 }
 
-.notebook-list-item, .fixed-first-notebook, .fixed-first-tag {
+.notebook-list-item, .fixed-first-notebook, .fixed-first-tag, .tag-list-item {
   padding-top: 10px;
   padding-left: 10px;
   height: 52px;
@@ -29,12 +29,17 @@
   color: #484848;
 }
 
-.notebook-list-item:hover, .tags-list-item:hover{
+.notebook-list-item:hover {
   background-color: #00cc00;
   color: white;
 }
 
-.notebook-list-item:hover .notebook-notecount, .tags-list-item:hover{
+.tag-list-item:hover{
+  background-color: #00cc00;
+  color: white;
+}
+
+.notebook-list-item:hover .notebook-notecount {
   color: white;
 }
 

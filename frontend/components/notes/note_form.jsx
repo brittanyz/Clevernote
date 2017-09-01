@@ -39,7 +39,6 @@ class NoteForm extends React.Component {
   }
 
   handleBody(e){
-    // ''
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
@@ -52,10 +51,8 @@ class NoteForm extends React.Component {
       this.props.location.pathname === `/tags/${this.props.match.params.tagId}`) {
         this.timeoutId = setTimeout(this.handleSubmit, 2000);
     }
-    // ''
 
     this.setState({
-      // body: e,
       body: e.currentTarget.value
     });
 

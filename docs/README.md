@@ -1,6 +1,7 @@
 # Clevernote
 
 - [evernote](https://evernote.com)
+- [Clevernote live](https://Clevernote-.herokuapp.com)
 
 Clevernote is a full-stack web application inspired by Evernote, enabling users to create, edit, and organize collections of notes.
 _________________
@@ -11,6 +12,7 @@ _________________
 - Notes
 - Notebooks
 - Tags
+- AutoSave
 
 ##### Built using:
 - Postgresql database

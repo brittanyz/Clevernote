@@ -15,10 +15,12 @@
   border: 1px solid darkgray;
   border-radius: 8px;
   cursor: pointer;
+  min-width: 60px;
+  // color: #00cc00;
 }
 
-.tag-names .tags-selected {
-  background-color: #f2f2f2
+.tag-names{
+  background-color: #f5f5f5;
 }
 
 .tag-names .tags-unselected {
