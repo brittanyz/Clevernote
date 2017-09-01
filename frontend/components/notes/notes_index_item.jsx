@@ -25,9 +25,7 @@ class NotesIndexItem extends React.Component{
   handleClick(e) {
     e.preventDefault();
     this.props.deleteNote(this.props.note.id).then(
-      () => this.setState({
-        selectedNote: null,
-      })
+      () => this.props.setSelectedToNull()
     );
   }
 
@@ -83,7 +81,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
   note: ownProps.note,
   selected: ownProps.selected,
-};
+  };
 };
 
 const mapDispatchToProps = dispatch => ({

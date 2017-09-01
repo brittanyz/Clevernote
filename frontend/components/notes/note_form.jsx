@@ -27,6 +27,10 @@ class NoteForm extends React.Component {
     }
     if (this.props.location.pathname === '/') {
       this.timeoutId = setTimeout(this.handleSubmit, 2000);
+    } else if (this.props.location.pathname.includes('notebook')) {
+      this.timeoutId = setTimeout(this.handleSubmit, 2000);
+    } else if (this.props.location.pathname.includes('tag')) {
+      this.timeoutId = setTimeout(this.handleSubmit, 2000);
     }
     e.preventDefault();
     this.setState({
@@ -35,7 +39,7 @@ class NoteForm extends React.Component {
   }
 
   handleBody(e){
-    // debugger
+    // ''
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
@@ -48,7 +52,7 @@ class NoteForm extends React.Component {
       this.props.location.pathname === `/tags/${this.props.match.params.tagId}`) {
         this.timeoutId = setTimeout(this.handleSubmit, 2000);
     }
-    // debugger
+    // ''
 
     this.setState({
       // body: e,
@@ -81,18 +85,23 @@ class NoteForm extends React.Component {
     if (typeof e !== 'undefined') {
       e.preventDefault();
     }
-    if (this.props.location.pathname === '/new' || this.props.location.pathname === '/') {
-      this.setState({notebook_id: this.props.notebookId}, () => this.props.submit(this.state).then(() => {
-          this.props.history.push('/');
-      }));
-    } else if (this.props.location.pathname.includes('notebooks')){
-      this.setState({notebook_id: this.props.match.params.notebookId}, () => this.props.submit(this.state).then(() => {
-        this.props.history.push(`/notebooks/${this.props.match.params.notebookId}`);
-      }));
-    } else {
-      this.setState({notebook_id: this.props.match.params.notebookId}, () => this.props.submit(this.state).then(() => {
-        this.props.history.push(`/tags/${this.props.match.params.tagId}`);
-      }));
+
+    if (this.props.location.pathname.includes('/new')) {
+      this.props.submit(this.state).then(() => {
+               this.props.history.push('/');
+           });
+    } else if (this.props.location.pathname === '/') {
+      this.props.submit(this.state).then( ({note}) => {
+            this.props.handleClick(note)();
+          });
+    } else if (this.props.location.pathname.includes('notebooks') &&            !this.props.location.pathname.includes('new')) {
+       this.props.submit(this.state).then( ({note}) => {
+            this.props.handleClick(note)();
+      });
+    } else if (this.props.location.pathname.includes('tags') &&            !this.props.location.pathname.includes('new')) {
+       this.props.submit(this.state).then( ({note}) => {
+        this.props.handleClick(note)();
+      });
     }
   }
 

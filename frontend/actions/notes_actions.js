@@ -39,7 +39,6 @@ export const addTagging = ({noteId, tagId}) => {
 }
 
 export const addTagToNote = (noteId, tagId)  => dispatch => {
-  debugger
   return APIUtil.addTagToNote(noteId, tagId).then(
     note => dispatch(receiveNote(note)),
     errors => dispatch(receiveErrors(errors)));

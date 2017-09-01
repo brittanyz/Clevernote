@@ -8,14 +8,30 @@ import { withRouter, Link } from 'react-router-dom';
 class NotebookIndexItem extends React.Component{
   constructor(props) {
     super(props);
+    // debugger
+    this.state = {
+      selectedNotebook: null
+    };
+    // this.handleClick = this.handleClick.bind(this);
   }
+
+  // handleClick(e) {
+  //   e.preventDefault();
+  //   this.props.deleteNotebook(this.props.notebook.id).then(
+  //     () => this.setState({
+  //       selectedNote: null,
+  //     })
+  //   );
+  // }
 
   render() {
     return(
       <li className='notebook-list-item' >
         <Link onClick={this.props.closeModal}
           to={`/notebooks/${this.props.notebook.id}`}>
+          <div className='title-and-delete'>
           <p className='notebook-title'>{this.props.notebook.title}</p>
+          </div>
           <p className='notebook-notecount'>
             {this.props.notebook.noteCount} notes</p>
         </Link>
@@ -25,6 +41,7 @@ class NotebookIndexItem extends React.Component{
 }
 
 // export default NotebookIndexItem;
+// <img className="trash" onClick={this.handleClick} src={window.images.trash} />
 
 // const mapStateToProps = (state, passedProps) => {
 //   return {

@@ -26,10 +26,10 @@ class NotesIndex extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.toggleClassName = this.toggleClassName.bind(this);
+    this.setSelectedToNull = this.setSelectedToNull.bind(this);
   }
 
   componentDidMount () {
-    // debugger
     if (this.props.type === "notebook") {
       this.props.fetchNotebook(this.props.match.params.notebookId);
     } else {
@@ -42,9 +42,10 @@ class NotesIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger
     if (!this.state.selectedNote && nextProps.notes.length) {
-      const sortedNotes = quickSort(nextProps.notes).reverse();
+      let sortedNotes = nextProps.notes.filter( (note) => note !== undefined);
+
+      sortedNotes = quickSort(sortedNotes).reverse();
       this.setState({
         selectedNote: sortedNotes[0]
       });
@@ -66,14 +67,14 @@ class NotesIndex extends React.Component {
   }
 
   handleTagClick(id) {
-    // debugger
+    // ''
     return (e) => {
       this.props.addTagToNote(this.state.selectedNote.id, id);
     };
   }
 
   toggleClassName() {
-    // debugger
+    // ''
   }
 
   openModal(type) {
@@ -93,6 +94,10 @@ class NotesIndex extends React.Component {
     };
   }
 
+  setSelectedToNull() {
+    this.setState({selectedNote: null});
+  }
+
   render() {
     // let notesObj = this.props.notes;
     let notes = this.props.notes;
@@ -101,10 +106,15 @@ class NotesIndex extends React.Component {
     // }
 
     let tags = [];
+    // debugger
     for(let tag in this.props.tags){
-      tags.push(this.props.tags[tag]);
+        if (tag !== undefined){
+        tags.push(this.props.tags[tag]);
+      }
     }
     // notes = notes.sort((note) => Date.parse(note.updated_at));
+    notes = notes.filter( (note) => note !== undefined );
+
     notes = quickSort(notes);
     notes = notes.reverse();
     // console.log(this.state.selectedNote)
@@ -126,7 +136,6 @@ class NotesIndex extends React.Component {
                         <p className="note-count">{this.props.noteCount} notes</p>
                       </li>;
     }
-    debugger
     return(
       <div className='notes-wrapper'>
         <NotebooksModal modalOpen={this.state.notebookModalOpen} closeModal={this.closeModal('notebookModalOpen')}/>
@@ -143,6 +152,7 @@ class NotesIndex extends React.Component {
                                     key={note.id}
                                     value={note.id}>
                                     <NotesIndexItem
+                                      setSelectedToNull={this.setSelectedToNull}
                                       note={note} />
                                   </button> )}
 
@@ -164,6 +174,7 @@ class NotesIndex extends React.Component {
             note={this.state.selectedNote || notes[0] || {title: 'Title your note', body: 'just start typing...'}}
             submit={this.props.editNote}
             button={null}
+            handleClick={this.handleClick}
             />
         </div>
 

@@ -11,7 +11,7 @@
 //   }
 //
 //   handleTagClick(id) {
-//     // debugger
+//     // ''
 //     return (e) => {
 //       addTagToNote(this.props.selectedNote.id, id);
 //     };

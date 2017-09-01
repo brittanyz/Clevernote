@@ -1,25 +1,25 @@
-.notebook-modal {
+.notebook-modal, .tags-modal {
   display: flex;
   flex-direction: row;
 
 }
 
-.notebook-list-item, .notebooks-list {
+.notebook-list-item, .notebooks-list, .tags-list, .tags-list-item {
   list-style: none;
 }
 
-.notebooks-list {
+.notebooks-list, .tags-list {
   display: flex;
   flex-direction: column;
 }
 
-.notebook-title {
+.notebook-title, .tag-name{
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
   font-size: 18px;
 }
 
-.notebook-list-item, .fixed-first-notebook {
+.notebook-list-item, .fixed-first-notebook, .fixed-first-tag {
   padding-top: 10px;
   padding-left: 10px;
   height: 52px;
@@ -29,16 +29,16 @@
   color: #484848;
 }
 
-.notebook-list-item:hover {
+.notebook-list-item:hover, .tags-list-item:hover{
   background-color: #00cc00;
   color: white;
 }
 
-.notebook-list-item:hover .notebook-notecount {
+.notebook-list-item:hover .notebook-notecount, .tags-list-item:hover{
   color: white;
 }
 
-.fixed-first-notebook {
+.fixed-first-notebook, .fixed-first-tag {
   height: 100px;
   font-size: 24px;
 }
@@ -49,5 +49,4 @@
   padding-top: 8px;
   color: #808080;
   // padding-left: 10px;
-
 }

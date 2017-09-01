@@ -13,7 +13,6 @@ const initialState = {};
 
 export default (state = initialState, action) => {
   Object.freeze(state);
-  debugger
   switch(action.type) {
     case RECEIVE_NOTEBOOKS:
       let notebooks = action.notebooks;

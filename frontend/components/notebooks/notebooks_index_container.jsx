@@ -5,7 +5,7 @@ import NotesIndex from '../notes/notes_index';
 
 const mapStateToProps = (state, passedProps) => {
 //this will change
-// debugger
+// ''
   let noteIds = [];
   if (state.notebooks[passedProps.match.params.notebookId] && state.notebooks[passedProps.match.params.notebookId].note_ids){
     noteIds = state.notebooks[passedProps.match.params.notebookId].note_ids;

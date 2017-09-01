@@ -9,8 +9,7 @@ class Api::TagsController < ApplicationController
   end
 
   def index
-    debugger
-    @tags = current_user.tags.sort
+    @tags = current_user.tags
   end
 
   def create

@@ -36,7 +36,7 @@ export const fetchNote = (noteId) => {
 };
 
 export const addTagToNote = (noteId, tagId) => {
-  debugger
+  ''
   return $.ajax({
     method: 'POST',
     url: `api/notes/${noteId}/add_tag`,

@@ -10,7 +10,6 @@ class TagIndexItem extends React.Component {
   }
 
   render() {
-    debugger
     return (
       <li className='tag-list-item' >
         <Link onClick={this.props.closeModal}
