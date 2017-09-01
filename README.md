@@ -1,5 +1,5 @@
 # Clevernote
-
+_________________
 - [Evernote](https://evernote.com)
 - [Clevernote live](https://Clevernote-.herokuapp.com)
 
@@ -40,4 +40,4 @@ I plan to continue working on more features for this project in the near future.
 I would like to have a search bar at the top of the notes index as well as tags and notebooks index pages as well.
 
 ##### Uploading Links
-The user should have the ability to upload links from various web pages to store as notes. 
+The user should have the ability to upload links from various web pages to store as notes.
