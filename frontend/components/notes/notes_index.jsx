@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import quickSort from './quick_sort';
 import NotebooksModal from '../notebooks/notebooks_modal';
 import TagsModal from '../tags/tags_modal';
+// import NoteTagsIndexItem from '../tags/note_tags_index_item';
 
 class NotesIndex extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class NotesIndex extends React.Component {
   }
 
   componentDidMount () {
+    // debugger
     if (this.props.type === "notebook") {
       this.props.fetchNotebook(this.props.match.params.notebookId);
     } else {
@@ -40,12 +42,14 @@ class NotesIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    debugger
     if (!this.state.selectedNote && nextProps.notes.length) {
       const sortedNotes = quickSort(nextProps.notes).reverse();
       this.setState({
         selectedNote: sortedNotes[0]
       });
     }
+
     if (this.props.type === "notebook") {
       if (this.props.match.params.notebookId !== nextProps.match.params.notebookId) {
         this.props.fetchNotebook(nextProps.match.params.notebookId);
@@ -62,9 +66,8 @@ class NotesIndex extends React.Component {
   }
 
   handleTagClick(id) {
+    // debugger
     return (e) => {
-      debugger
-
       this.props.addTagToNote(this.state.selectedNote.id, id);
     };
   }
@@ -104,7 +107,7 @@ class NotesIndex extends React.Component {
     // notes = notes.sort((note) => Date.parse(note.updated_at));
     notes = quickSort(notes);
     notes = notes.reverse();
-
+    // console.log(this.state.selectedNote)
 
     let header;
     if (this.props.type === 'notebook' && this.props.selectedNotebook) {
@@ -123,6 +126,7 @@ class NotesIndex extends React.Component {
                         <p className="note-count">{this.props.noteCount} notes</p>
                       </li>;
     }
+    debugger
     return(
       <div className='notes-wrapper'>
         <NotebooksModal modalOpen={this.state.notebookModalOpen} closeModal={this.closeModal('notebookModalOpen')}/>
@@ -141,21 +145,23 @@ class NotesIndex extends React.Component {
                                     <NotesIndexItem
                                       note={note} />
                                   </button> )}
+
         </ul>
         <div className='noteform-with-tags'>
           <ul className= 'all-tags'>
             {tags.map ( (tag) => <button
-                                    className='tag-names'
-                                    onClick={this.handleTagClick(tag.id)}
-                                    key={tag.id}
-                                    value={tag.id}>
-                                    {tag.tag_name}
+                                  className='tag-names'
+                                  onClick={this.handleTagClick(tag.id)}
+                                  key={tag.id}
+                                  value={tag.id}>
+                                  {tag.tag_name}
                                  </button> )}
+
           </ul>
 
           <NoteForm
             notes={notes}
-            note={this.state.selectedNote || {title: 'Title your note', body: 'just start typing...'}}
+            note={this.state.selectedNote || notes[0] || {title: 'Title your note', body: 'just start typing...'}}
             submit={this.props.editNote}
             button={null}
             />
@@ -167,8 +173,18 @@ class NotesIndex extends React.Component {
   }
 }
 
+// {tags.map ( (tag) => <button
+//   className='tag-names'
+//   onClick={this.handleTagClick(tag.id)}
+//   key={tag.id}
+//   value={tag.id}>
+//   {tag.tag_name}
+// </button> )}
 
 export default withRouter(NotesIndex);
+
+
+
 
 // <TagIndexItem
 //   tag={tag} />
@@ -178,3 +194,25 @@ export default withRouter(NotesIndex);
 // <TagIndexContainer
 //   addTagToNote={true}
 //   tag={tag} />
+// {tags.map ( (tag) => <NoteTagsIndexItem
+//                       onClick={this.handleTagClick(tag.id)}
+//                       tag={tag}
+//                       notes={notes} />)}
+// {tags.map ( (tag) => <NoteTagsIndexItem
+//                       tag={tag}
+//                       selectedNote={this.state.selectedNote}
+//                       notes={notes} />)}
+
+
+
+
+
+// revert!!!!
+
+// {tags.map ( (tag) => <button
+//                       className='tag-names'
+//                       onClick={this.handleTagClick(tag.id)}
+//                       key={tag.id}
+//                       value={tag.id}>
+//                       {tag.tag_name}
+//                      </button> )}

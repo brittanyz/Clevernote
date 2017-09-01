@@ -43,7 +43,7 @@ class NewTagForm extends React.Component {
             type='text'
             placeholder="Title your tag..."
             onChange={this.handleTagName}/>
-          <input className='nb-submit' type='submit' value='submit' />
+          <input className='tag-submit' type='submit' value='submit' />
         </form>
       </div>
     );

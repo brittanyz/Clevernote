@@ -35,6 +35,7 @@ class NoteForm extends React.Component {
   }
 
   handleBody(e){
+    // debugger
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
@@ -43,9 +44,15 @@ class NoteForm extends React.Component {
     } else if (this.props.match.params.notebookId &&
       this.props.location.pathname === `/notebooks/${this.props.match.params.notebookId}`) {
         this.timeoutId = setTimeout(this.handleSubmit, 2000);
+    } else if (this.props.match.params.tagId &&
+      this.props.location.pathname === `/tags/${this.props.match.params.tagId}`) {
+        this.timeoutId = setTimeout(this.handleSubmit, 2000);
     }
+    // debugger
+
     this.setState({
-      body: e.currentTarget.value,
+      // body: e,
+      body: e.currentTarget.value
     });
 
     // this is new
@@ -75,13 +82,16 @@ class NoteForm extends React.Component {
       e.preventDefault();
     }
     if (this.props.location.pathname === '/new' || this.props.location.pathname === '/') {
-
       this.setState({notebook_id: this.props.notebookId}, () => this.props.submit(this.state).then(() => {
           this.props.history.push('/');
       }));
-    } else {
+    } else if (this.props.location.pathname.includes('notebooks')){
       this.setState({notebook_id: this.props.match.params.notebookId}, () => this.props.submit(this.state).then(() => {
         this.props.history.push(`/notebooks/${this.props.match.params.notebookId}`);
+      }));
+    } else {
+      this.setState({notebook_id: this.props.match.params.notebookId}, () => this.props.submit(this.state).then(() => {
+        this.props.history.push(`/tags/${this.props.match.params.tagId}`);
       }));
     }
   }
@@ -97,7 +107,9 @@ class NoteForm extends React.Component {
     return (
       <div className='edit-note-container'>
         <form className='edit-note-form' onSubmit={this.handleSubmit}>
-          <ReactQuill />
+          <div className='quill'>
+            <ReactQuill />
+           </div>
           <input
             className='title'
             type='text'
@@ -121,9 +133,23 @@ class NoteForm extends React.Component {
 
 export default withRouter(NoteForm);
 
+// <textarea
+//   placeholder={placeholderBody}
+//   type='text'
+//   className='edit-body'
+//   onChange={this.handleBody}
+//   value={this.state.body}/>
 
 // <ReactQuill
 //   className='edit-body'
 //   value={this.state.body}
 //   onChange={this.handleBody}
 //   />
+
+
+
+// quill
+
+// css detail (encapsulates quill) is position absolute---
+// get snow
+// put text area stuff inside of RQ

@@ -4,8 +4,7 @@ import { fetchNotes, editNote, createNote, addTagToNote } from '../../actions/no
 import NotesIndex from '../notes/notes_index';
 
 const mapStateToProps = (state, passedProps) => {
-//this will change
-  // debugger
+
   let noteIds = [];
   if (state.tags[passedProps.match.params.tagId] && state.tags[passedProps.match.params.tagId].note_ids){
     noteIds = state.tags[passedProps.match.params.tagId].note_ids;
@@ -27,7 +26,8 @@ const mapStateToProps = (state, passedProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTagToNote: (id) => dispatch(addTagToNote(id)),
+    editNote: note => dispatch(editNote(note)),
+    addTagToNote: (noteId, tagId) => dispatch(addTagToNote(noteId, tagId)),
     fetchTag: (id) => dispatch(fetchTag(id)),
     fetchTags: () => dispatch(fetchTags()),
     fetchNotes: () => dispatch(fetchNotes()),

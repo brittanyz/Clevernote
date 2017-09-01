@@ -9,6 +9,7 @@ export const DELETE_NOTEBOOK = 'DELETE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const CLEAR_NOTEBOOKS = 'CLEAR_NOTEBOOKS';
 
 export const receiveNotebook = ({notebook, notes}) => ({
   type: RECEIVE_NOTEBOOK,
@@ -28,6 +29,10 @@ export const removeNotebook = (notebook) => ({
   notebook,
   errors: [],
 });
+
+export const clearNotebooks = () => ({
+  type: CLEAR_NOTEBOOKS,
+})
 
 export const createNotebook = (notebookData) => dispatch => {
   return APIUtil.createNotebook(notebookData).then(

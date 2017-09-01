@@ -2,6 +2,7 @@ import {
   RECEIVE_NOTEBOOKS,
   RECEIVE_NOTEBOOK,
   REMOVE_NOTEBOOK,
+  CLEAR_NOTEBOOKS,
   RECEIVE_ERRORS,
   CLEAR_ERRORS } from '../actions/notebooks_actions';
 import { REMOVE_NOTE } from '../actions/notes_actions';
@@ -12,6 +13,7 @@ const initialState = {};
 
 export default (state = initialState, action) => {
   Object.freeze(state);
+  debugger
   switch(action.type) {
     case RECEIVE_NOTEBOOKS:
       let notebooks = action.notebooks;
@@ -23,6 +25,8 @@ export default (state = initialState, action) => {
       let newState = merge({}, state);
       delete newState[action.notebook.id];
       return newState;
+    case CLEAR_NOTEBOOKS:
+      return merge({}, {});
     case RECEIVE_ERRORS:
       let errors = action.errors.responseJSON;
       return merge({}, state, { errors });

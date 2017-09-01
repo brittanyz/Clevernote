@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/sessions_actions';
 import { withRouter } from 'react-router-dom';
+import { clearNotebooks } from '../../actions/notebooks_actions';
 
 class LeftNavBar extends React.Component {
   constructor(props){
@@ -19,6 +20,7 @@ class LeftNavBar extends React.Component {
     this.props.logout().then(
       () => this.props.history.push('/signup')
     );
+    this.props.clearNotebooks();
   }
 
   handleNew(e){
@@ -53,6 +55,7 @@ class LeftNavBar extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
+  clearNotebooks: () => dispatch(clearNotebooks()),
 });
 
 // onClick={this.handleNew}

@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+
 const mapDispatchToProps = dispatch => {
   return {
     addTagToNote: (noteId, tagId) => dispatch(addTagToNote(noteId, tagId)),
