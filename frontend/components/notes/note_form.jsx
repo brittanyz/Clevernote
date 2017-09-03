@@ -4,6 +4,8 @@ import { fetchNotes, editNote, createNote } from '../../actions/notes_actions';
 import { withRouter, Redirect } from 'react-router-dom';
 import NewNote from './new_note';
 import ReactQuill from 'react-quill';
+import cutPTags from './cut_p_tags';
+// import theme from 'react-quill/dist/quill.snow.css';
 
 class NoteForm extends React.Component {
 
@@ -52,8 +54,9 @@ class NoteForm extends React.Component {
         this.timeoutId = setTimeout(this.handleSubmit, 2000);
     }
 
+    // debugger
     this.setState({
-      body: e.currentTarget.value
+      body: e
     });
 
     // this is new
@@ -83,19 +86,25 @@ class NoteForm extends React.Component {
       e.preventDefault();
     }
 
+    let savedNote = this.state;
+    savedNote.body = cutPTags(savedNote.body)
+    debugger
+
     if (this.props.location.pathname.includes('/new')) {
-      this.props.submit(this.state).then(() => {
+      this.props.submit(savedNote).then(() => {
                this.props.history.push('/');
            });
     } else if (this.props.location.pathname === '/') {
-      this.props.submit(this.state).then( ({note}) => {
+      this.props.submit(savedNote).then( ({note}) => {
             this.props.handleClick(note)();
           });
-    } else if (this.props.location.pathname.includes('notebooks') &&            !this.props.location.pathname.includes('new')) {
+    } else if (this.props.location.pathname.includes('notebooks') &&
+              !this.props.location.pathname.includes('new')) {
        this.props.submit(this.state).then( ({note}) => {
             this.props.handleClick(note)();
       });
-    } else if (this.props.location.pathname.includes('tags') &&            !this.props.location.pathname.includes('new')) {
+    } else if (this.props.location.pathname.includes('tags') &&
+              !this.props.location.pathname.includes('new')) {
        this.props.submit(this.state).then( ({note}) => {
         this.props.handleClick(note)();
       });
@@ -114,7 +123,6 @@ class NoteForm extends React.Component {
       <div className='edit-note-container'>
         <form className='edit-note-form' onSubmit={this.handleSubmit}>
           <div className='quill'>
-            <ReactQuill />
            </div>
           <input
             className='title'
@@ -123,12 +131,11 @@ class NoteForm extends React.Component {
             placeholder={placeholderTitle}
             onChange={this.handleTitle} />
           <br></br>
-          <textarea
-            placeholder={placeholderBody}
-            type='text'
+          <ReactQuill
             className='edit-body'
+            value={this.state.body}
             onChange={this.handleBody}
-            value={this.state.body}/>
+            />
           {this.props.button}
         </form>
       </div>
@@ -145,6 +152,7 @@ export default withRouter(NoteForm);
 //   className='edit-body'
 //   onChange={this.handleBody}
 //   value={this.state.body}/>
+
 
 // <ReactQuill
 //   className='edit-body'

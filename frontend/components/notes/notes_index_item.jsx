@@ -71,7 +71,8 @@ class NotesIndexItem extends React.Component{
           <img className="trash" onClick={this.handleClick} src={window.images.trash} />
         </div>
         <p className='updated-at'>last updated: {this.convertTime()}</p>
-        <p className='note-body'>{this.handleBodyLength()}</p>
+
+        <div className='note-body' dangerouslySetInnerHTML={{__html: this.handleBodyLength()}}></div>
       </div>
     );
   }
@@ -89,3 +90,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NotesIndexItem));
+
+
+// <p className='note-body'>{this.handleBodyLength()}</p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import NotesIndexItem from './notes_index_item';
 // import TagIndexContainer from '../tags/tags_index_container';
+import cutPTags from './cut_p_tags';
 import NewNote from './new_note';
 import NoteHeader from './note_header';
 import NoteForm from './note_form';
@@ -9,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 import quickSort from './quick_sort';
 import NotebooksModal from '../notebooks/notebooks_modal';
 import TagsModal from '../tags/tags_modal';
+import ReactQuill from 'react-quill';
 // import NoteTagsIndexItem from '../tags/note_tags_index_item';
 
 class NotesIndex extends React.Component {
@@ -25,7 +27,7 @@ class NotesIndex extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.toggleClassName = this.toggleClassName.bind(this);
+    // this.toggleClassName = this.toggleClassName.bind(this);
     this.setSelectedToNull = this.setSelectedToNull.bind(this);
   }
 
@@ -44,7 +46,7 @@ class NotesIndex extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!this.state.selectedNote && nextProps.notes.length) {
       let sortedNotes = nextProps.notes.filter( (note) => note !== undefined);
-
+      // sortedNotes = nextProps.notes.forEach((note) => cutPTags(note));
       sortedNotes = quickSort(sortedNotes).reverse();
       this.setState({
         selectedNote: sortedNotes[0]
@@ -73,9 +75,8 @@ class NotesIndex extends React.Component {
     };
   }
 
-  toggleClassName() {
-    // ''
-  }
+  // toggleClassName() {
+  // }
 
   openModal(type) {
     return (e) => {
@@ -112,12 +113,10 @@ class NotesIndex extends React.Component {
         tags.push(this.props.tags[tag]);
       }
     }
-    // notes = notes.sort((note) => Date.parse(note.updated_at));
     notes = notes.filter( (note) => note !== undefined );
 
     notes = quickSort(notes);
     notes = notes.reverse();
-    // console.log(this.state.selectedNote)
 
     let header;
     if (this.props.type === 'notebook' && this.props.selectedNotebook) {
@@ -136,6 +135,7 @@ class NotesIndex extends React.Component {
                         <p className="note-count">{this.props.noteCount} notes</p>
                       </li>;
     }
+
     return(
       <div className='notes-wrapper'>
         <NotebooksModal modalOpen={this.state.notebookModalOpen} closeModal={this.closeModal('notebookModalOpen')}/>
