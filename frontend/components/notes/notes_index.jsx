@@ -1,7 +1,6 @@
 import React from 'react';
 import NotesIndexItem from './notes_index_item';
 // import TagIndexContainer from '../tags/tags_index_container';
-import cutPTags from './cut_p_tags';
 import NewNote from './new_note';
 import NoteHeader from './note_header';
 import NoteForm from './note_form';
@@ -46,7 +45,6 @@ class NotesIndex extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!this.state.selectedNote && nextProps.notes.length) {
       let sortedNotes = nextProps.notes.filter( (note) => note !== undefined);
-      // sortedNotes = nextProps.notes.forEach((note) => cutPTags(note));
       sortedNotes = quickSort(sortedNotes).reverse();
       this.setState({
         selectedNote: sortedNotes[0]
@@ -69,14 +67,10 @@ class NotesIndex extends React.Component {
   }
 
   handleTagClick(id) {
-    // ''
     return (e) => {
-      this.props.addTagToNote(this.state.selectedNote.id, id);
+      this.props.addTagToNote(this.state.selectedNote.id , id);
     };
   }
-
-  // toggleClassName() {
-  // }
 
   openModal(type) {
     return (e) => {
@@ -107,7 +101,6 @@ class NotesIndex extends React.Component {
     // }
 
     let tags = [];
-    // debugger
     for(let tag in this.props.tags){
         if (tag !== undefined){
         tags.push(this.props.tags[tag]);
@@ -135,11 +128,12 @@ class NotesIndex extends React.Component {
                         <p className="note-count">{this.props.noteCount} notes</p>
                       </li>;
     }
-
     return(
       <div className='notes-wrapper'>
-        <NotebooksModal modalOpen={this.state.notebookModalOpen} closeModal={this.closeModal('notebookModalOpen')}/>
-        <TagsModal modalOpen={this.state.tagModalOpen} closeModal={this.closeModal('tagModalOpen')} />
+        <NotebooksModal modalOpen={this.state.notebookModalOpen}
+                        closeModal={this.closeModal('notebookModalOpen')}/>
+        <TagsModal modalOpen={this.state.tagModalOpen}
+                   closeModal={this.closeModal('tagModalOpen')}/>
         <LeftNavBar
           defaultNote={this.state.selectedNote || notes[0]}
           openModal={this.openModal}/>

@@ -37,23 +37,36 @@
 }
 
 .title {
+  // position: absolute;
   color: #00cc00;
-  font-weight: 100;
+  font-weight: 150;
   font-size: 40px;
-  padding-top: 8px;
-  padding-left: 15px;
+  padding-top: 5px;
+  padding-left: 25px;
 }
 
 .title::placeholder{
   color: #00cc00;
 }
+
+// .quill-body {
+//   padding-top: 40px;
+// }
+
 .edit-body {
+  // padding-top: 30px;
+  white-space: pre;
+  // position: absolute;
   font-weight: 100;
-  font-size: 14px;
+  font-size: 16px;
   color: darkgray;
   padding-top: 8px;
   overflow: hidden;
   height: inherit;
+}
+
+.edit-body:value {
+  padding-top: 40px;
 }
 
 .edit-submit {

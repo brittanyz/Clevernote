@@ -4,7 +4,6 @@ import { fetchNotes, editNote, createNote } from '../../actions/notes_actions';
 import { withRouter, Redirect } from 'react-router-dom';
 import NewNote from './new_note';
 import ReactQuill from 'react-quill';
-import cutPTags from './cut_p_tags';
 // import theme from 'react-quill/dist/quill.snow.css';
 
 class NoteForm extends React.Component {
@@ -29,10 +28,12 @@ class NoteForm extends React.Component {
     }
     if (this.props.location.pathname === '/') {
       this.timeoutId = setTimeout(this.handleSubmit, 2000);
-    } else if (this.props.location.pathname.includes('notebook')) {
-      this.timeoutId = setTimeout(this.handleSubmit, 2000);
-    } else if (this.props.location.pathname.includes('tag')) {
-      this.timeoutId = setTimeout(this.handleSubmit, 2000);
+    } else if (this.props.match.params.notebookId &&
+      this.props.location.pathname === `/notebooks/${this.props.match.params.notebookId}`) {
+        this.timeoutId = setTimeout(this.handleSubmit, 2000);
+    } else if (this.props.match.params.tagId &&
+      this.props.location.pathname === `/tags/${this.props.match.params.tagId}`) {
+        this.timeoutId = setTimeout(this.handleSubmit, 2000);
     }
     e.preventDefault();
     this.setState({
@@ -54,22 +55,9 @@ class NoteForm extends React.Component {
         this.timeoutId = setTimeout(this.handleSubmit, 2000);
     }
 
-    // debugger
     this.setState({
       body: e
     });
-
-    // this is new
-    // let param;
-
-    // if (typeof e.target === 'undefined') {
-    //   param = {body: e};
-    // }
-
-
-    // this.setState({
-    //   body: e.currentTarget.value,
-    // });
   }
 
   componentWillReceiveProps(newProps) {
@@ -85,34 +73,31 @@ class NoteForm extends React.Component {
     if (typeof e !== 'undefined') {
       e.preventDefault();
     }
-
-    let savedNote = this.state;
-    savedNote.body = cutPTags(savedNote.body)
-    debugger
-
-    if (this.props.location.pathname.includes('/new')) {
-      this.props.submit(savedNote).then(() => {
-               this.props.history.push('/');
-           });
-    } else if (this.props.location.pathname === '/') {
-      this.props.submit(savedNote).then( ({note}) => {
+    if (this.state.body !== "just start typing...") {
+      if (this.props.location.pathname.includes('/new')) {
+        this.setState({notebook_id: this.props.match.params.notebookId}, () =>
+              this.props.submit(this.state).then(() => {
+              this.props.history.push('/');
+            }));
+      } else if (this.props.location.pathname === '/') {
+        this.props.submit(this.state).then( ({note}) => {
+              this.props.handleClick(note)();
+            });
+      } else if (this.props.location.pathname.includes('notebooks') &&
+                !this.props.location.pathname.includes('new')) {
+          this.props.submit(this.state).then( ({note}) => {
             this.props.handleClick(note)();
-          });
-    } else if (this.props.location.pathname.includes('notebooks') &&
-              !this.props.location.pathname.includes('new')) {
-       this.props.submit(this.state).then( ({note}) => {
-            this.props.handleClick(note)();
-      });
-    } else if (this.props.location.pathname.includes('tags') &&
-              !this.props.location.pathname.includes('new')) {
-       this.props.submit(this.state).then( ({note}) => {
-        this.props.handleClick(note)();
-      });
+        });
+      } else if (this.props.location.pathname.includes('tags') &&
+                !this.props.location.pathname.includes('new')) {
+         this.props.submit(this.state).then( ({note}) => {
+          this.props.handleClick(note)();
+        });
+      }
     }
   }
 
   render() {
-    // fix this later... still rendering with a placeholder
     let placeholderTitle = "Title your note";
     let placeholderBody = "just start typing.....";
     if (this.props.location.pathname.includes("tags")) {

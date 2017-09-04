@@ -8,7 +8,6 @@ import { withRouter, Link } from 'react-router-dom';
 class NotebookIndexItem extends React.Component{
   constructor(props) {
     super(props);
-    // debugger
     this.state = {
       selectedNotebook: null
     };
@@ -41,7 +40,6 @@ class NotebookIndexItem extends React.Component{
 }
 
 // export default NotebookIndexItem;
-// <img className="trash" onClick={this.handleClick} src={window.images.trash} />
 
 // const mapStateToProps = (state, passedProps) => {
 //   return {
@@ -55,3 +53,6 @@ class NotebookIndexItem extends React.Component{
 // });
 
 export default withRouter(NotebookIndexItem);
+
+
+// <img className="trash" onClick={this.handleClick} src={window.images.trash} />
