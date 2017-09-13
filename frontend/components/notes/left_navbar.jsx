@@ -43,9 +43,15 @@ class LeftNavBar extends React.Component {
         <Link to={link}
           className='new'>+</Link>
         <Link to='/'
-          className='all-notes'>notes</Link>
-        <button onClick={this.props.openModal('notebookModalOpen')} className='notebooks'>nb</button>
-        <button onClick={this.props.openModal('tagModalOpen')} className='tags'>tags</button>
+          className='all-notes'>
+          <img className='all-notes-logo' src={window.images.notebook} />
+        </Link>
+        <button onClick={this.props.openModal('notebookModalOpen')} className='notebooks'>
+          <img className='note-book-logo' src={window.images.notes} />
+        </button>
+        <button onClick={this.props.openModal('tagModalOpen')} className='tags'>
+          <img className='tags-logo' src={window.images.tags} />
+        </button>
         <button onClick={this.handleClick} className='logout'>⏏</button>
       </div>
     );

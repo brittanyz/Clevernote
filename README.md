@@ -1,7 +1,6 @@
 # Clevernote
 _________________
-- [Evernote](https://evernote.com)
-- [Clevernote live](https://Clevernote-.herokuapp.com)
+- [Clevernote live](www.clevernote.fun)
 
 Clevernote is a full-stack web application inspired by Evernote, enabling users to create, edit, and organize collections of notes.
 _________________
@@ -20,7 +19,7 @@ _________________
 ### Note Rendering and Editing
 Upon logging in/signing up for Clevernote a default notebook is created and populated with a welcome note via after_create methods in the User model. A user can create a note from the home page and organize/edit existing notes. The notes index is sorted by the updated_at column in the database listing the most recently updated notes first. This allowed me to implement an auto save feature for editing that will update your note dynamically and keep it at the top of the notes index, therefore also making it the default note to be displayed. The user also has the ability to create/delete notes. I've designed Clevernote's UI to mimic the Evernote app for a clean and user-friendly experience.
 
-Below is my implementation of auto-sve which is come in the component's handleChange method:
+Below is my implementation of auto-save which is come in the component's handleChange method:
 ![auto-save](docs/auto-save.png)
 
 ### Notebooks

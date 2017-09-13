@@ -9,7 +9,7 @@
   justify-content: space-between;
 }
 
-.new, .logout, .notebooks, .all-notes, .tags {
+.new, .logout {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,24 +24,26 @@
   padding-right: 4px;
 }
 
+.note-book-logo, .tags-logo, .all-notes-logo {
+  width: 40px;
+	height: 40px;
+}
+
 .new:hover {
   background-color: #00cc00;
   color: white;
 }
 
-.notebooks:hover {
-  background-color: #00cc00;
-  color: white;
+.tags-logo:hover {
+  cursor:pointer;
+}
+//
+.note-book-logo:hover,  {
+  cursor: pointer
 }
 
-.tags:hover {
-  background-color: #00cc00;
-  color: white;
-}
-
-.all-notes:hover {
-  background-color: #00cc00;
-  color: white;
+.all-notes-logo:hover,  {
+  cursor: pointer
 }
 
 .logout:hover {

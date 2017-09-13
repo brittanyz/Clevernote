@@ -61,6 +61,10 @@
   min-height: 400px;
 }
 
+.login-button:hover {
+  cursor: pointer;
+}
+
 .input, .login-button {
   padding-left: 15px;
   background-color: #f2f2f2;
