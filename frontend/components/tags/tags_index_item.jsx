@@ -15,6 +15,7 @@ class TagIndexItem extends React.Component {
         <Link onClick={this.props.closeModal}
           to={`/tags/${this.props.tag.id}`}>
           <p className='tag-name'>{this.props.tag.tag_name}</p>
+          <p className='tag-note-count'>notes: {this.props.tag.noteCount}</p>
         </Link>
       </li>
     );

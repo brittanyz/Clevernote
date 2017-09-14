@@ -34,11 +34,14 @@
   color: white;
 }
 
-.tag-list-item:hover{
+.tag-list-item:hover {
   background-color: #00cc00;
   color: white;
 }
 
+.tag-list-item:hover .tag-note-count {
+  color: white;
+}
 .notebook-list-item:hover .notebook-notecount {
   color: white;
 }
@@ -48,7 +51,7 @@
   font-size: 24px;
 }
 
-.notebook-notecount {
+.notebook-notecount, .tag-note-count{
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   padding-top: 8px;
