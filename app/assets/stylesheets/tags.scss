@@ -9,14 +9,17 @@
 }
 
 .tag-names {
+  display: flex;
   padding-left: 2px;
   padding-right: 2px;
-  height: 28px;
+  height: 30px;
   border: 1px solid darkgray;
   border-radius: 8px;
   cursor: pointer;
-  min-width: 60px;
-  font-size: 18px;
+  min-width: 85px;
+  font-family: 'Montserrat';
+  font-size: 15px;
+  justify-content: center;
   // color: #00cc00;
 }
 

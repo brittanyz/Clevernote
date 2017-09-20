@@ -21,8 +21,10 @@ export default (state = initialState, action) => {
       let notebook = action.notebook;
       return merge ({}, state, {[notebook.id]: notebook});
     case REMOVE_NOTEBOOK:
+    debugger
       let newState = merge({}, state);
-      delete newState[action.notebook.id];
+      // delete newState[action.notebook.id];
+      delete newState[action.notebook.notebook.id];
       return newState;
     case CLEAR_NOTEBOOKS:
       return merge({}, {});

@@ -11,17 +11,15 @@ class NotebookIndexItem extends React.Component{
     this.state = {
       selectedNotebook: null
     };
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  // handleClick(e) {
-  //   e.preventDefault();
-  //   this.props.deleteNotebook(this.props.notebook.id).then(
-  //     () => this.setState({
-  //       selectedNote: null,
-  //     })
-  //   );
-  // }
+  handleClick(e) {
+    e.preventDefault();
+    this.props.deleteNotebook(this.props.notebook.id).then(
+      this.props.history.push('/')
+    );
+  }
 
   render() {
     return(
@@ -30,6 +28,7 @@ class NotebookIndexItem extends React.Component{
           to={`/notebooks/${this.props.notebook.id}`}>
           <div className='title-and-delete'>
           <p className='notebook-title'>{this.props.notebook.title}</p>
+          <img className="trash" onClick={this.handleClick} src={window.images.trash} />
           </div>
           <p className='notebook-notecount'>
             {this.props.notebook.noteCount} notes</p>
@@ -41,18 +40,16 @@ class NotebookIndexItem extends React.Component{
 
 // export default NotebookIndexItem;
 
-// const mapStateToProps = (state, passedProps) => {
-//   return {
-//     notebook: passedProps.notebook,
-//     selectedId: passedProps.selected,
-//   };
-// };
+const mapStateToProps = (state, passedProps) => {
+  return {
+    closeModal: passedProps.closeModal,
+    notebook: passedProps.notebook,
+    selectedId: passedProps.selected,
+  };
+};
 
-// const mapDispatchToProps = dispatch => ({
-//   deleteNotebook: (id) => dispatch(deleteNotebook(id)),
-// });
+const mapDispatchToProps = dispatch => ({
+  deleteNotebook: (id) => dispatch(deleteNotebook(id)),
+});
 
-export default withRouter(NotebookIndexItem);
-
-
-// <img className="trash" onClick={this.handleClick} src={window.images.trash} />
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NotebookIndexItem));
