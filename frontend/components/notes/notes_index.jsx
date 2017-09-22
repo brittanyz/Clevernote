@@ -31,6 +31,7 @@ class NotesIndex extends React.Component {
   }
 
   componentDidMount () {
+
     if (this.props.type === "notebook") {
       this.props.fetchNotebook(this.props.match.params.notebookId);
     } else {

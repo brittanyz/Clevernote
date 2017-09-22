@@ -16,9 +16,10 @@ class NotebookIndexItem extends React.Component{
 
   handleClick(e) {
     e.preventDefault();
-    this.props.deleteNotebook(this.props.notebook.id).then(
-      this.props.history.push('/')
-    );
+    this.props.deleteNotebook(this.props.notebook.id);
+    // this.props.deleteNotebook(this.props.notebook.id).then(
+    //   this.props.history.push('/')
+    // );
   }
 
   getTrash() {
