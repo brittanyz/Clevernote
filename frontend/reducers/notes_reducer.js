@@ -5,7 +5,7 @@ import {
   ADD_TAGGING,
   RECEIVE_ERRORS,
   CLEAR_ERRORS } from '../actions/notes_actions';
-import { RECEIVE_NOTEBOOK } from '../actions/notebooks_actions';
+import { RECEIVE_NOTEBOOK, REMOVE_NOTEBOOK } from '../actions/notebooks_actions';
 import { merge } from 'lodash';
 
 const initialState = {};
@@ -28,6 +28,14 @@ export default (state = initialState, action) => {
       return newState;
     case RECEIVE_NOTEBOOK:
       return merge({}, state, action.notes);
+    case REMOVE_NOTEBOOK:
+      newState = merge( {}, state);
+      for (note in newState) {
+        if (newState[note].notebook_id === action.notebook.notebook.id) {
+          delete newState[note];
+        }
+      }
+      return newState;
     case RECEIVE_ERRORS:
       let errors = action.errors.responseJSON;
       return merge({}, state, { errors });
@@ -35,3 +43,4 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+// have a REMOVE_NOTEBOOK action here and delete all the notes in that notebook.

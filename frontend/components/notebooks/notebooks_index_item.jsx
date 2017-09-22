@@ -21,14 +21,23 @@ class NotebookIndexItem extends React.Component{
     );
   }
 
+  getTrash() {
+
+  }
+
   render() {
+    let trash = null;
+    if (this.props.notebook.title !== "Default Notebook") {
+      trash = <img className="trash" onClick={this.handleClick} src={window.images.trash} />
+    }
+
     return(
       <li className='notebook-list-item' >
         <Link onClick={this.props.closeModal}
           to={`/notebooks/${this.props.notebook.id}`}>
           <div className='title-and-delete'>
           <p className='notebook-title'>{this.props.notebook.title}</p>
-          <img className="trash" onClick={this.handleClick} src={window.images.trash} />
+          {trash}
           </div>
           <p className='notebook-notecount'>
             {this.props.notebook.noteCount} notes</p>

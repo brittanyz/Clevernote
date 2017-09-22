@@ -1,7 +1,5 @@
 class Api::NotebooksController < ApplicationController
-  #
-  # def new
-  # end
+
 
   def create
     @notebook = Notebook.new(notebook_params)
