@@ -69,7 +69,7 @@ class NotesIndex extends React.Component {
 
   handleTagClick(id) {
     return (e) => {
-      this.props.addTagToNote(this.state.selectedNote.id , id);
+      this.props.addTagToNote(this.state.selectedNote.id, id);
     };
   }
 
@@ -104,11 +104,7 @@ class NotesIndex extends React.Component {
   }
 
   render() {
-    // let notesObj = this.props.notes;
     let notes = this.props.notes;
-    // for(let note in notesObj){
-    //   notes.push(notesObj[note]);
-    // }
 
     let tags = [];
     for(let tag in this.props.tags){
