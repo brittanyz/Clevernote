@@ -94,6 +94,15 @@ class NotesIndex extends React.Component {
     this.setState({selectedNote: null});
   }
 
+  toggleTagClass(tag) {
+    debugger
+    if (this.state.selectedNote && this.state.selectedNote.tag_ids.includes(tag.id)) {
+      return 'tagged-names'
+    } else {
+      return 'tag-names'
+    }
+  }
+
   render() {
     // let notesObj = this.props.notes;
     let notes = this.props.notes;
@@ -155,7 +164,7 @@ class NotesIndex extends React.Component {
         <div className='noteform-with-tags'>
           <ul className= 'all-tags'>
             {tags.map ( (tag) => <button
-                                  className='tag-names'
+                                  className={this.toggleTagClass(tag)}
                                   onClick={this.handleTagClick(tag.id)}
                                   key={tag.id}
                                   value={tag.id}>
@@ -178,6 +187,12 @@ class NotesIndex extends React.Component {
     );
   }
 }
+// messing with tag class name --> this goes 162
+// className='tag-names'
+
+
+
+
 
 // {tags.map ( (tag) => <button
 //   className='tag-names'
