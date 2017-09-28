@@ -50,7 +50,6 @@ class NotesIndex extends React.Component {
         selectedNote: sortedNotes[0]
       });
     }
-
     if (this.props.type === "notebook") {
       if (this.props.match.params.notebookId !== nextProps.match.params.notebookId) {
         this.props.fetchNotebook(nextProps.match.params.notebookId);
@@ -61,7 +60,6 @@ class NotesIndex extends React.Component {
       let note = nextProps.notes.filter( (note) => {
         return note.title === title
       })
-      debugger
       this.setState({
         selectedNote: note[0]
       })
