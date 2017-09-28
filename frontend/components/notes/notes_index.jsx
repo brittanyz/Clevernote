@@ -56,16 +56,16 @@ class NotesIndex extends React.Component {
         this.props.fetchNotebook(nextProps.match.params.notebookId);
       }
     }
-    // if (this.props.type === 'note' && this.state.selectedNote) {
-    //   let title = this.state.selectedNote.title;
-    //   let note = nextProps.notes.filter( (note) => {
-    //     debugger
-    //     note.title === title
-    //   })
-    //   this.setState({
-    //     selectedNote: note
-    //   })
-    // }
+    if (this.props.type === 'note' && this.state.selectedNote) {
+      let title = this.state.selectedNote.title;
+      let note = nextProps.notes.filter( (note) => {
+        return note.title === title
+      })
+      debugger
+      this.setState({
+        selectedNote: note[0]
+      })
+    }
   }
 
   handleClick(note) {
