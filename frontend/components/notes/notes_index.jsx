@@ -26,12 +26,11 @@ class NotesIndex extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    // this.toggleClassName = this.toggleClassName.bind(this);
+    this.toggleTagClass = this.toggleTagClass.bind(this);
     this.setSelectedToNull = this.setSelectedToNull.bind(this);
   }
 
   componentDidMount () {
-
     if (this.props.type === "notebook") {
       this.props.fetchNotebook(this.props.match.params.notebookId);
     } else {
@@ -57,6 +56,16 @@ class NotesIndex extends React.Component {
         this.props.fetchNotebook(nextProps.match.params.notebookId);
       }
     }
+    // if (this.props.type === 'note' && this.state.selectedNote) {
+    //   let title = this.state.selectedNote.title;
+    //   let note = nextProps.notes.filter( (note) => {
+    //     debugger
+    //     note.title === title
+    //   })
+    //   this.setState({
+    //     selectedNote: note
+    //   })
+    // }
   }
 
   handleClick(note) {
@@ -95,7 +104,6 @@ class NotesIndex extends React.Component {
   }
 
   toggleTagClass(tag) {
-    debugger
     if (this.state.selectedNote && this.state.selectedNote.tag_ids.includes(tag.id)) {
       return 'tagged-names'
     } else {
