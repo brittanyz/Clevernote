@@ -86,10 +86,11 @@ class TagsModal extends React.Component {
                                     key={tag.id}
                                     onClick={this.handleTagClick(tag.id)}>
                                     <TagIndexItem
+                                      tagId={tag.id}
+                                      deleteTag={this.props.deleteTag}
                                       addTagToNote={false}
                                       closeTag={this.props.closeModal}
                                       tag={tag}/>
-                                    <img className="trash" onClick={this.removeTag(tag.id)} src={window.images.trash} />
                                   </button> )}
           </ul>
         </Modal>
@@ -99,6 +100,7 @@ class TagsModal extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  // <img className="trash" onClick={this.removeTag(tag.id)} src={window.images.trash} />
   // author: state.session.current_user,
   // notes: state.session.current_user.notes.tags
   return {

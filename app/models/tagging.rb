@@ -17,6 +17,7 @@ class Tagging < ApplicationRecord
   foreign_key: :note_id
 
   belongs_to :tag,
+  dependent: :destroy,
   foreign_key: :tag_id
 
   has_one :author,

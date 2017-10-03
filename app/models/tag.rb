@@ -14,6 +14,7 @@ class Tag < ApplicationRecord
   validates :tag_name, uniqueness: true
 
   has_many :taggings,
+    dependent: :destroy,
     foreign_key: :tag_id
 
   belongs_to :author,

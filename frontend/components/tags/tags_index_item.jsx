@@ -9,6 +9,12 @@ class TagIndexItem extends React.Component {
     super(props);
   }
 
+  removeTag(id) {
+    return (e) => {
+      this.props.deleteTag(id);
+    };
+  }
+
   render() {
     return (
       <li className='tag-list-item' >
@@ -16,24 +22,11 @@ class TagIndexItem extends React.Component {
           to={`/tags/${this.props.tag.id}`}>
           <p className='tag-name'>{this.props.tag.tag_name}</p>
           <p className='tag-note-count'>notes: {this.props.tag.noteCount}</p>
-          <p>{this.props.trash}</p>
         </Link>
+        <img className="trash" onClick={this.removeTag(this.props.tagId)} src={window.images.trash} />
       </li>
     );
   }
 }
 
 export default TagIndexItem;
-
-// const mapStateToProps = (state, passedProps) => {
-//   return {
-//     tag: passedProps.tag,
-//     selectedId: passedProps.selected,
-//   };
-// };
-//
-// const mapDispatchToProps = dispatch => ({
-//   deleteNotebook: (id) => dispatch(deleteTag(id)),
-// });
-//
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TagIndexItem));

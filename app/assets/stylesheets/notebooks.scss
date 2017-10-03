@@ -28,6 +28,11 @@
   color: #484848;
 }
 
+.tag-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
 .notebook-list-item:hover {
   background-color: #00cc00;
   color: white;
