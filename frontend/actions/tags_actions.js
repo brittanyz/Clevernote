@@ -3,7 +3,7 @@ import { receiveErrors } from './sessions_actions';
 
 export const RECEIVE_TAGS = 'RECEIVE_TAGS';
 export const RECEIVE_TAG= 'RECEIVE_TAG';
-export const REMOVE_TAG= 'DELETE_TAG';
+export const REMOVE_TAG = 'REMOVE_TAG';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
@@ -40,8 +40,8 @@ export const fetchTag = (tagId) => dispatch => (
     errors => dispatch(receiveErrors(errors)))
 );
 
-export const deleteTag = (tagId) => dispatch => (
-  APIUtil.deleteTag(tagId).then(
+export const deleteTag = (tagId) => dispatch => {
+  return APIUtil.deleteTag(tagId).then(
     tagId => dispatch(removeTag(tagId)),
-    errors => dispatch(receiveErrors(errors)))
-);
+    errors => dispatch(receiveErrors(errors)));
+};

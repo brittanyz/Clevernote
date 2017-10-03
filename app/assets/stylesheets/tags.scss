@@ -9,9 +9,10 @@
 }
 
 .tag-names, .tagged-names {
+  position: relative;
   display: flex;
   padding-left: 4px;
-  padding-right: 4px;
+  padding-right: 10px;
   height: 30px;
   border: 2px solid darkgray;
   border-radius: 8px;
@@ -28,3 +29,20 @@
   color: darkgray;
   border: 1px solid darkgray;
 }
+//
+// .delete-tag {
+//   position: absolute;
+//   top: -2px;
+//   right: 0px;
+//   font-size: 14px;
+//   color: red;
+//   font-weight: 500;
+//   cursor: pointer;
+// }
+
+// .tag-item {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//
+// }

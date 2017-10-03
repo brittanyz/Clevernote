@@ -29,6 +29,12 @@ class Api::NotesController < ApplicationController
     render :show
   end
 
+  def remove_tag
+    @tag = Tag.find(params[:tagId])
+    @note = Note.find(params[:noteId])
+    @note.tag_ids.delete(@tag.id)
+  end
+
   def update
     @note = Note.find(params[:id])
     if current_user.notebooks.exists?(id: @note.notebook_id) && @note.update(note_params)
@@ -59,7 +65,6 @@ class Api::NotesController < ApplicationController
 
   private
 
-# add tagging
   def note_params
     params.require(:note).permit(:title, :body, :notebook_id, tag_ids: [])
   end

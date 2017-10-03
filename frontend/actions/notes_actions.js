@@ -8,6 +8,7 @@ export const REMOVE_NOTE = 'REMOVE_NOTE';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const ADD_TAGGING = 'ADD_TAGGING';
+export const REMOVE_TAGGING = 'REMOVE_TAGGING';
 
 
 export const receiveNote = (note) => ({
@@ -42,6 +43,12 @@ export const addTagToNote = (noteId, tagId)  => dispatch => {
   return APIUtil.addTagToNote(noteId, tagId).then(
     note => dispatch(receiveNote(note)),
     errors => dispatch(receiveErrors(errors)));
+};
+
+export const removeTagFromNote = (noteId, tagId) => dispatch => {
+  return APIUtil.removeTagFromNote(noteId, tagId).then(
+    note => dispatch(receiveNote(note)),
+  errors => dispatch(receiveErrors(errors)));
 };
 
 export const createNote = (noteData) => dispatch => (

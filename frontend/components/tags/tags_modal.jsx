@@ -12,6 +12,7 @@ import { fetchNotes } from '../../actions/notes_actions';
 class TagsModal extends React.Component {
   constructor(props) {
     super(props);
+
     this.customStyles = {
       content : {
         top: '0',
@@ -20,8 +21,10 @@ class TagsModal extends React.Component {
         bottom: '0',
       }
     };
+
     this.closeTagModal = this.closeTagModal.bind(this);
     this.openTagModal = this.openTagModal.bind(this);
+    this.removeTag = this.removeTag.bind(this);
   }
 
   openTagModal() {
@@ -44,9 +47,14 @@ class TagsModal extends React.Component {
     };
   }
 
+  removeTag(id) {
+    return (e) => {
+      this.props.deleteTag(id)
+    };
+  }
+
   componentDidMount() {
     this.props.fetchTags();
-
   }
 
   componentWillMount() {
@@ -56,6 +64,7 @@ class TagsModal extends React.Component {
   }
 
   render() {
+    // let trash =
     let tags = [];
     for(let tag in this.props.tags) {
       tags.push(this.props.tags[tag]);
@@ -73,12 +82,14 @@ class TagsModal extends React.Component {
               <Link to='/tags/new' className='add-tag'>+</Link>
             </li>
             {tags.map ( (tag) => <button
+                                    className='tag-item'
                                     key={tag.id}
                                     onClick={this.handleTagClick(tag.id)}>
                                     <TagIndexItem
                                       addTagToNote={false}
                                       closeTag={this.props.closeModal}
                                       tag={tag}/>
+                                    <img className="trash" onClick={this.removeTag(tag.id)} src={window.images.trash} />
                                   </button> )}
           </ul>
         </Modal>
@@ -98,6 +109,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  deleteTag: (tagId) => dispatch(deleteTag(tagId)),
   fetchTags: () => dispatch(fetchTags()),
   fetchTag: (tagId) => dispatch(fetchTag(tagId)),
   fetchNotes: () => dispatch(fetchNotes()),

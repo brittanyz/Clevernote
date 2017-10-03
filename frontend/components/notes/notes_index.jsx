@@ -88,7 +88,6 @@ class NotesIndex extends React.Component {
     };
   }
 
-
   closeModal(type) {
     return (e) => {
       this.setState({
@@ -165,13 +164,14 @@ class NotesIndex extends React.Component {
         </ul>
         <div className='noteform-with-tags'>
           <ul className= 'all-tags'>
-            {tags.map ( (tag) => <button
-                                  className={this.toggleTagClass(tag)}
-                                  onClick={this.handleTagClick(tag.id)}
-                                  key={tag.id}
-                                  value={tag.id}>
-                                  {tag.tag_name}
-                                 </button> )}
+            {tags.map ( (tag) =>
+                                    <button
+                                    className={this.toggleTagClass(tag)}
+                                    onClick={this.handleTagClick(tag.id)}
+                                    key={tag.id}
+                                    value={tag.id}>
+                                    {tag.tag_name}
+                                    </button>)}
 
           </ul>
 
@@ -189,20 +189,6 @@ class NotesIndex extends React.Component {
     );
   }
 }
-// messing with tag class name --> this goes 162
-// className='tag-names'
-
-
-
-
-
-// {tags.map ( (tag) => <button
-//   className='tag-names'
-//   onClick={this.handleTagClick(tag.id)}
-//   key={tag.id}
-//   value={tag.id}>
-//   {tag.tag_name}
-// </button> )}
 
 export default withRouter(NotesIndex);
 

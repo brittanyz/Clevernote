@@ -10,7 +10,7 @@ const initialState = {};
 
 export default (state = initialState, action) => {
   Object.freeze(state);
-  
+
   switch(action.type) {
     case RECEIVE_TAGS:
       let tags = action.tags;
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
       return merge ({}, state, {[tag.id]: tag});
     case REMOVE_TAG:
       let newState = merge({}, state);
-      delete newState[action.tag.id];
+      delete newState[action.tag.tag.id];
       return newState;
     case RECEIVE_ERRORS:
       let errors = action.errors.responseJSON;
